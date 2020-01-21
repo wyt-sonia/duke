@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -10,21 +11,33 @@ public class Duke {
                 "     Hello! I'm Duke\n" +
                 "     What can I do for you?\n" +
                 "    ____________________________________________________________";
+        String userInput = "";
+
 
         System.out.println(greeting);
-
-        String userInput = "";
         while(!userInput.equals(stopFlag)){
+
             userInput = scanner.nextLine();
             String reply = "";
-            if(!userInput.equals(stopFlag)) {
-                reply = "    ____________________________________________________________\n" +
-                        "     "+ userInput +"\n" +
-                        "    ____________________________________________________________\n";
-            } else {
-                reply = "    ____________________________________________________________\n" +
-                        "     Bye. Hope to see you again soon!\n" +
-                        "    ____________________________________________________________\n";
+
+            switch (userInput) {
+                case "bye":
+                    reply = "    ____________________________________________________________\n" +
+                            "     Bye. Hope to see you again soon!\n" +
+                            "    ____________________________________________________________\n";
+                    break;
+
+                case "list":
+                    reply = "    ____________________________________________________________\n" +
+                            "     "+ Task.getTaskListString()  +
+                            "    ____________________________________________________________\n";
+                    break;
+
+                default:
+                    Task inputedTask = new Task(userInput);
+                    reply = "    ____________________________________________________________\n" +
+                            "     added: "+ inputedTask.getTaskName() +"\n" +
+                            "    ____________________________________________________________\n";
             }
             System.out.println(reply);
         }
