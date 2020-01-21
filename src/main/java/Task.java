@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Task {
-    private String taskName;
-    private boolean isDone;
+    protected String taskName;
+    protected boolean isDone;
     public static ArrayList<Task> taskList = new ArrayList<>();
 
     public Task(String taskName) {
@@ -27,13 +27,18 @@ public class Task {
         this.isDone = true;
     }
 
+    @Override
+    public String toString(){
+        return this.getStatusString() + " " + this.getTaskName();
+    }
+
     public static String getTaskListString () {
         String listOfTasks = "";
 
         for(Task t : taskList) {
             int counter = taskList.indexOf(t);
             if (counter != 0) listOfTasks += "     ";
-            listOfTasks += counter + 1 + "." + t.getStatusString() + " " + t.getTaskName() + "\n";
+            listOfTasks += counter + 1 + "." + t.toString() + "\n";
         }
         return taskList.size() != 0 ? listOfTasks : "- No task was entered -\n";
     }
