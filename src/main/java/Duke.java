@@ -15,8 +15,8 @@ public class Duke {
 
 
         System.out.println(greeting);
-        while(!userInput.equals(stopFlag)){
 
+        while(!userInput.equals(stopFlag)){
             userInput = scanner.nextLine();
             String reply = "";
 
@@ -29,17 +29,45 @@ public class Duke {
 
                 case "list":
                     reply = "    ____________________________________________________________\n" +
+                            "     Here are the tasks in your list: \n" +
                             "     "+ Task.getTaskListString()  +
                             "    ____________________________________________________________\n";
                     break;
 
                 default:
-                    Task inputedTask = new Task(userInput);
-                    reply = "    ____________________________________________________________\n" +
-                            "     added: "+ inputedTask.getTaskName() +"\n" +
-                            "    ____________________________________________________________\n";
+                    String[] tempArr = userInput.split(" ");
+                    if(tempArr[0].equals("done")) {
+                        if(tempArr.length != 2 || !isInteger(tempArr[1]) ||
+                                Integer.parseInt(tempArr[1]) > Task.taskList.size() || Integer.parseInt(tempArr[1]) < 1) {
+                            reply = "    ____________________________________________________________\n" +
+                                    "     Please enter a valid task number\n" +
+                                    "    ____________________________________________________________\n";
+                        } else {
+                            Task t = Task.taskList.get(Integer.parseInt(tempArr[1]) - 1);
+                            t.markAsDone();
+                            reply = "    ____________________________________________________________\n" +
+                                    "     Nice! I've marked this task as done: \n" +
+                                    "       " + t.getStatusString() + " " + t.getTaskName() + "\n" +
+                                    "    ____________________________________________________________\n";
+                        }
+                    } else {
+                        Task inputedTask = new Task(userInput);
+                        reply = "    ____________________________________________________________\n" +
+                                "     added: "+ inputedTask.getTaskName() +"\n" +
+                                "    ____________________________________________________________\n";
+                    }
+
             }
             System.out.println(reply);
         }
+    }
+
+    public static boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch(NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
 }
