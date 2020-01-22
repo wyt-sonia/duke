@@ -98,7 +98,21 @@ public class Duke {
                                 "     Now you have " + Task.taskList.size() + " tasks in the list.\n";
                         break;
 
+                    case "delete":
+                        userInput = scanner.nextLine();
+                        if (userInput.isBlank()) throw new DukeException("deleteMissingIndex");
+                        if (!isInteger(userInput.substring(1))) throw new DukeException("deleteWrongIndexFormat");
+                        int deleteIndex = Integer.parseInt(userInput.substring(1));
+                        if (deleteIndex > Task.taskList.size() || deleteIndex < 1)
+                            throw new DukeException("deleteWrongIndexRange");
+                        Task temp = Task.taskList.remove(deleteIndex - 1);
+                        reply += "     Noted. I've removed this task: \n" +
+                                 "       " + temp.toString() + "\n" +
+                                 "     Now you have " + Task.taskList.size() + " tasks in the list.\n";
+                        break;
+
                     default:
+                        scanner.nextLine();
                         throw new DukeException("randomInput");
                 }
 
@@ -118,5 +132,10 @@ public class Duke {
             return false;
         }
         return true;
+    }
+
+    public static boolean validation(String option, String userInput) {
+        boolean valid = true;
+        return valid;
     }
 }

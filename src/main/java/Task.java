@@ -1,12 +1,20 @@
 import java.util.ArrayList;
 
+enum TaskType {
+    TODO,
+    DEADLINE,
+    EVENT
+}
+
 public class Task {
     protected String taskName;
     protected boolean isDone;
+    protected TaskType type;
     public static ArrayList<Task> taskList = new ArrayList<>();
 
-    public Task(String taskName) {
+    public Task(String taskName, TaskType type) {
         this.taskName = taskName;
+        this.type = type;
         taskList.add(this);
         this.isDone = false;
     }
