@@ -9,7 +9,7 @@
          Event: use "event + description + /at + date" to create (e.g. event taskInfo /at Mon 2-4pm).
 
      You can also use "list" to check the recorded tasks.
-     Or use "done + task index" to mark the task as done.
+     Or use "done + task index" to mark the task as done. 
 
      To terminate me, please use "bye".
 
@@ -18,3 +18,5 @@
     ____________________________________________________________
      ☹ OOPS!!! I'm sorry, but I don't know what that means :-(
     ____________________________________________________________
+
+

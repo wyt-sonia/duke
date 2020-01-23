@@ -8,7 +8,7 @@ public class DukeException extends Exception {
 
         switch (message) {
             case "emptyList":
-                this.errorMessage += "There is no task yet.";
+                this.errorMessage += "There is no task yet. Please add some tasks.";
                 break;
 
             case "doneMissingIndex":
@@ -26,7 +26,7 @@ public class DukeException extends Exception {
                 break;
 
             case "doneComplectedTask":
-                this.errorMessage += "The task is already completed";
+                this.errorMessage += "The task is already completed.";
                 break;
 
             case "taskMissingDescription":
@@ -35,7 +35,7 @@ public class DukeException extends Exception {
 
             case "deadline&eventWrongDescriptionFormat":
                 this.errorMessage += "Please follow the valid deadline/event creation format. " +
-                        "\n       e.g. deadline description /date ; event description /date";
+                        "\n       e.g. deadline description /by date ; event description /at date";
                 break;
 
             case "randomInput":
