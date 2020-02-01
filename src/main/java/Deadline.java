@@ -8,17 +8,17 @@ public class Deadline extends Task {
         this.by = by;
     }
 
-    public Deadline (String description, String by, boolean isDone) {
+    public Deadline (String description, LocalDateTime by, boolean isDone) {
         super(description, TaskType.DEADLINE);
         this.isDone = isDone;
         this.by = by;
     }
 
-    public String getBy() {
+    public LocalDateTime getBy() {
         return by;
     }
 
-    public void setBy(String by) {
+    public void setBy(LocalDateTime by) {
         this.by = by;
     }
 
@@ -27,5 +27,10 @@ public class Deadline extends Task {
         return "[D]" + super.toString() +
                 " (by: " + by.getHour() + ":" + by.getMinute() +
                 " " + by.getDayOfMonth() + "/" + by.getMonthValue() + "/" + by.getYear() + ")";
+    }
+
+    public String getDateTimeString() {
+        return by.getHour() + ":" + by.getMinute() +
+                " " + by.getDayOfMonth() + "/" + by.getMonthValue() + "/" + by.getYear();
     }
 }

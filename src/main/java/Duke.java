@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Duke {
+
+    static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
+
     public static void main(String[] args) throws FileNotFoundException {
 
         Scanner scanner = new Scanner(System.in);
@@ -36,7 +39,6 @@ public class Duke {
         System.out.println(greeting);
         retrieveTasks();
         boolean isRunning = true;
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
 
         while(isRunning) {
             reply = line + "\n";
@@ -99,7 +101,7 @@ public class Duke {
                         if (!userInput.contains("/by")) throw new DukeException("deadline&eventWrongDescriptionFormat");
                         tempArr = userInput.trim().split("/by");
                         if (tempArr.length != 2) throw new DukeException("deadline&eventWrongDescriptionFormat");
-                        LocalDateTime inputTime = LocalDateTime.parse(tempArr[1].trim(), dtf);
+                        LocalDateTime inputTime = LocalDateTime.parse(tempArr[1].trim(), DATETIME_FORMAT);
                         if(inputTime.isBefore(LocalDateTime.now())) throw new DukeException("pastDateTime");
                         Deadline deadline = new Deadline(tempArr[0].trim(), inputTime);
                         reply += "     Got it. I've added this task: \n" +
@@ -179,7 +181,7 @@ public class Duke {
                         temp = new ToDo(recordInfo[2].trim(), isDone);
                         break;
                     case "D":
-                        temp = new Deadline(recordInfo[2].trim(), recordInfo[3].trim(), isDone);
+                        temp = new Deadline(recordInfo[2].trim(), LocalDateTime.parse(recordInfo[3].trim(), DATETIME_FORMAT), isDone);
                         break;
                     case "E":
                         temp = new Event(recordInfo[2].trim(), recordInfo[3].trim(), isDone);
@@ -190,6 +192,9 @@ public class Duke {
         }
         catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
+        }
+        catch (DateTimeParseException e) {
+            System.out.println(e.getMessage());
         }
     }
 

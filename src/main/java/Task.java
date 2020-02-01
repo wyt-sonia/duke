@@ -67,7 +67,7 @@ public class Task {
                     temp += "T | " + status + " | " + t.getTaskName() + "\n";
                     break;
                 case DEADLINE:
-                    temp += "D | "+ status + " | " + t.getTaskName() + " | " + ((Deadline)t).getBy() + "\n";
+                    temp += "D | "+ status + " | " + t.getTaskName() + " | " + ((Deadline)t).getDateTimeString() + "\n";
                     break;
                 case EVENT:
                     temp += "E | "+ status + " | " + t.getTaskName() + " | " + ((Event)t).getAt() + "\n";
