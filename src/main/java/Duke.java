@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -30,18 +32,18 @@ public class Duke {
         String[] tempArr;
         String reply = "";
         System.out.println(greeting);
-        while(!option.equals("bye")) {
+        retrieveTasks();
+        boolean isRunning = true;
+        while(isRunning) {
             reply = line + "\n";
             option = scanner.next();
             try {
                 switch (option.toLowerCase()) {
                     case "bye":
-                        userInput = scanner.next();
-                        if (!userInput.isBlank()) {
-                            option = "";
-                            throw new DukeException("randomInput");
-                        }
+                        userInput = scanner.nextLine();
+                        if (!userInput.isBlank()) throw new DukeException("randomInput");
                         reply += "     Bye. Hope to see you again soon!\n";
+                        isRunning = false;
                         break;
 
                     case "list":
@@ -74,6 +76,7 @@ public class Duke {
                         t.markAsDone();
                         reply += "     Nice! I've marked this task as done: \n" +
                                 "       " + t.toString() + "\n";
+                        save();
                         break;
 
                     case "todo":
@@ -83,6 +86,7 @@ public class Duke {
                         reply += "     Got it. I've added this task: \n" +
                                 "       " + toDo.toString() + "\n" +
                                 "     Now you have " + Task.taskList.size() + " tasks in the list.\n";
+                        save();
                         break;
 
                     case "deadline":
@@ -90,11 +94,12 @@ public class Duke {
                         if (userInput.isBlank()) throw new DukeException("taskMissingDescription");
                         if (!userInput.contains("/by")) throw new DukeException("deadline&eventWrongDescriptionFormat");
                         tempArr = userInput.trim().split("/by");
-                        if (tempArr.length != 2) throw new DukeException("deadline&eventWrongDescriptionFormat");
+                        if (tempArr.length != 2 || tempArr[0].isBlank()) throw new DukeException("deadline&eventWrongDescriptionFormat");
                         Deadline deadline = new Deadline(tempArr[0].trim(), tempArr[1].trim());
                         reply += "     Got it. I've added this task: \n" +
                                 "       " + deadline.toString() + "\n" +
                                 "     Now you have " + Task.taskList.size() + " tasks in the list.\n";
+                        save();
                         break;
 
                     case "event":
@@ -102,11 +107,12 @@ public class Duke {
                         if (userInput.isBlank()) throw new DukeException("taskMissingDescription");
                         if (!userInput.contains("/at")) throw new DukeException("deadline&eventWrongDescriptionFormat");
                         tempArr = userInput.trim().split("/at");
-                        if (tempArr.length != 2) throw new DukeException("deadline&eventWrongDescriptionFormat");
+                        if (tempArr.length != 2 || tempArr[0].isBlank()) throw new DukeException("deadline&eventWrongDescriptionFormat");
                         Event event = new Event(tempArr[0].trim(), tempArr[1].trim());
                         reply += "     Got it. I've added this task: \n" +
                                 "       " + event.toString() + "\n" +
                                 "     Now you have " + Task.taskList.size() + " tasks in the list.\n";
+                        save();
                         break;
 
                     case "delete":
@@ -121,6 +127,7 @@ public class Duke {
                         reply += "     Noted. I've removed this task: \n" +
                                  "       " + temp.toString() + "\n" +
                                  "     Now you have " + Task.taskList.size() + " tasks in the list.\n";
+                        save();
                         break;
 
                     default:
@@ -128,7 +135,6 @@ public class Duke {
                         scanner.nextLine();
                         throw new DukeException("randomInput");
                 }
-
             } catch (DukeException e) {
                 reply += e.errorMessage + "\n";
             } finally {
@@ -150,5 +156,47 @@ public class Duke {
     public static boolean validation(String option, String userInput) {
         boolean valid = true;
         return valid;
+    }
+
+    public static void retrieveTasks() {
+        try{
+            File f = new File("data/duke.txt");
+            Scanner s = new Scanner(f); // create a Scanner using the File as the source
+            while (s.hasNextLine()) {
+                String taskRecord = s.nextLine();
+                String[] recordInfo = taskRecord.split("\\|");
+                Task temp = null;
+                boolean isDone = false;
+                if (recordInfo[1].trim().equals("1"))
+                    isDone = true;
+
+                switch (recordInfo[0].trim()) {
+                    case "T":
+                        temp = new ToDo(recordInfo[2].trim(), isDone);
+                        break;
+                    case "D":
+                        temp = new Deadline(recordInfo[2].trim(), recordInfo[3].trim(), isDone);
+                        break;
+                    case "E":
+                        temp = new Event(recordInfo[2].trim(), recordInfo[3].trim(), isDone);
+                        break;
+                }
+
+            }
+        }
+        catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public static void save() {
+        try{
+            FileWriter fw = new FileWriter("data/duke.txt", false);
+            fw.write(Task.getSavedString());
+            fw.close();
+        }
+        catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

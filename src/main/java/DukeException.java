@@ -16,11 +16,13 @@ public class DukeException extends Exception {
                 break;
 
             case "doneWrongIndexFormat":
+                //Fallthrough
             case "deleteWrongIndexFormat":
                 this.errorMessage += "Please use an integer as index number.";
                 break;
 
             case "doneWrongIndexRange":
+                //Fallthrough
             case "deleteWrongIndexRange":
                 this.errorMessage += "There is only "+ Task.taskList.size() + " tasks. Please enter valid task index.";
                 break;
