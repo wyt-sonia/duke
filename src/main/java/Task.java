@@ -1,5 +1,6 @@
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 enum TaskType {
@@ -12,7 +13,7 @@ public class Task {
     protected String taskName;
     protected boolean isDone;
     protected TaskType type;
-    public static ArrayList<Task> taskList = new ArrayList<>();
+    static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
 
     public Task() {
 
@@ -21,7 +22,6 @@ public class Task {
     public Task(String taskName, TaskType type) {
         this.taskName = taskName;
         this.type = type;
-        taskList.add(this);
         this.isDone = false;
     }
 
@@ -46,35 +46,4 @@ public class Task {
         return this.getStatusString() + " " + this.getTaskName();
     }
 
-    public static String getTaskListString() {
-        String listOfTasks = "";
-
-        for(Task t : taskList) {
-            int counter = taskList.indexOf(t);
-            if (counter != 0) listOfTasks += "     ";
-            listOfTasks += counter + 1 + "." + t.toString() + "\n";
-        }
-        return taskList.size() != 0 ? listOfTasks : "- No task was entered -\n";
-    }
-
-    public static String getSavedString() {
-        String tasks = "";
-        for(Task t : taskList) {
-            String temp = "";
-            int status = t.isDone ? 1 : 0;
-            switch (t.type) {
-                case TODO:
-                    temp += "T | " + status + " | " + t.getTaskName() + "\n";
-                    break;
-                case DEADLINE:
-                    temp += "D | "+ status + " | " + t.getTaskName() + " | " + ((Deadline)t).getDateTimeString() + "\n";
-                    break;
-                case EVENT:
-                    temp += "E | "+ status + " | " + t.getTaskName() + " | " + ((Event)t).getAt() + "\n";
-                    break;
-            }
-            tasks += temp;
-        }
-        return tasks;
-    }
 }

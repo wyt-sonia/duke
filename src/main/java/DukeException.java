@@ -24,7 +24,7 @@ public class DukeException extends Exception {
             case "doneWrongIndexRange":
                 //Fallthrough
             case "deleteWrongIndexRange":
-                this.errorMessage += "There is only "+ Task.taskList.size() + " tasks. Please enter valid task index.";
+                this.errorMessage += "Please enter valid task index.";
                 break;
 
             case "doneComplectedTask":
@@ -52,7 +52,17 @@ public class DukeException extends Exception {
                 this.errorMessage += "Please enter a time in the future.";
                 break;
 
+            case "FileNotFound":
+                this.errorMessage += "There is something wrong with your file storage.";
+                break;
+
+            case "DateTimeParseError":
+                this.errorMessage += "Invalid date time format, please follow the format below:\n       " +
+                                     "HH:mm dd/MM/yyyy   e.g. 12:00 01/01/2020";
+                break;
+            default:
+                this.errorMessage += "Something went wrong: " + message;
+
         }
     }
-
 }
