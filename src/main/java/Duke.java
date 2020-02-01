@@ -1,13 +1,15 @@
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class Duke {
     public static void main(String[] args) throws FileNotFoundException {
 
-        //File text = new File("text-ui-test/input.txt");
-        //Scanner scanner = new Scanner(text);
         Scanner scanner = new Scanner(System.in);
         final String line = "    ____________________________________________________________";
         String greeting =
@@ -17,8 +19,10 @@ public class Duke {
                                 "     ============================== Guide ==============================\n"+
                                 "     There are three types of tasks I'm able to keep track of.\n" +
                                 "         Todo: use \"todo + description\" to create (e.g. todo taskInfo).\n" +
-                                "         Deadline: use \"deadline + description + /by + date\" to create (e.g. deadline taskInfo /by June 6th).\n" +
-                                "         Event: use \"event + description + /at + date\" to create (e.g. event taskInfo /at Mon 2-4pm).\n\n" +
+                                "         Deadline: use \"deadline + description + /by + date\" to create " +
+                                "(e.g. deadline taskInfo /by 12:00 01/01/2020\n" +
+                                "         Event: use \"event + description + /at + date\" to create " +
+                                "(e.g. event taskInfo /at Mon 2-4pm).\n\n" +
                                 "     You can also use \"list\" to check the recorded tasks.\n" +
                                 "     Or use \"done + task index\" to mark the task as done. \n\n" +
                                 "     To terminate me, please use \"bye\".\n\n" +
@@ -30,18 +34,19 @@ public class Duke {
         String[] tempArr;
         String reply = "";
         System.out.println(greeting);
-        while(!option.equals("bye")) {
+        boolean isRunning = true;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
+
+        while(isRunning) {
             reply = line + "\n";
             option = scanner.next();
             try {
                 switch (option.toLowerCase()) {
                     case "bye":
-                        userInput = scanner.next();
-                        if (!userInput.isBlank()) {
-                            option = "";
-                            throw new DukeException("randomInput");
-                        }
+                        userInput = scanner.nextLine();
+                        if (!userInput.isBlank()) throw new DukeException("randomInput");
                         reply += "     Bye. Hope to see you again soon!\n";
+                        isRunning = false;
                         break;
 
                     case "list":
@@ -91,7 +96,9 @@ public class Duke {
                         if (!userInput.contains("/by")) throw new DukeException("deadline&eventWrongDescriptionFormat");
                         tempArr = userInput.trim().split("/by");
                         if (tempArr.length != 2) throw new DukeException("deadline&eventWrongDescriptionFormat");
-                        Deadline deadline = new Deadline(tempArr[0].trim(), tempArr[1].trim());
+                        LocalDateTime inputTime = LocalDateTime.parse(tempArr[1].trim(), dtf);
+                        if(inputTime.isBefore(LocalDateTime.now())) throw new DukeException("pastDateTime");
+                        Deadline deadline = new Deadline(tempArr[0].trim(), inputTime);
                         reply += "     Got it. I've added this task: \n" +
                                 "       " + deadline.toString() + "\n" +
                                 "     Now you have " + Task.taskList.size() + " tasks in the list.\n";
@@ -131,7 +138,10 @@ public class Duke {
 
             } catch (DukeException e) {
                 reply += e.errorMessage + "\n";
-            } finally {
+            } catch (DateTimeParseException e) {
+                reply += "     Invalid date time format, please follow the format below:\n       HH:mm dd/MM/yyyy" +
+                        " e.g. 12:00 01/01/2020\n";
+            }finally {
                 reply += line + "\n";
                 System.out.println(reply);
             }
@@ -145,10 +155,5 @@ public class Duke {
             return false;
         }
         return true;
-    }
-
-    public static boolean validation(String option, String userInput) {
-        boolean valid = true;
-        return valid;
     }
 }

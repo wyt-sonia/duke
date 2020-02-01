@@ -46,6 +46,10 @@ public class DukeException extends Exception {
                 this.errorMessage += "Please enter the index of the task you want to delete.";
                 break;
 
+            case "pastDateTime":
+                this.errorMessage += "Please enter a time in the future.";
+                break;
+
         }
     }
 
