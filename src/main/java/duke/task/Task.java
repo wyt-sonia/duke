@@ -1,7 +1,6 @@
-import java.io.FileWriter;
-import java.io.IOException;
+package duke.task;
+
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 enum TaskType {
     TODO,
@@ -13,7 +12,7 @@ public class Task {
     protected String taskName;
     protected boolean isDone;
     protected TaskType type;
-    static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
+    public static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
 
     public Task() {
 
@@ -25,8 +24,8 @@ public class Task {
         this.isDone = false;
     }
 
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
+    public boolean isDone() {
+        return isDone;
     }
 
     public String getTaskName() {

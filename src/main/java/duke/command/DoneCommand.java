@@ -1,3 +1,11 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.Storage;
+import duke.Ui;
+import duke.task.Task;
+import duke.task.TaskList;
+
 public class DoneCommand extends Command {
     private int index;
 
@@ -12,7 +20,7 @@ public class DoneCommand extends Command {
         if (this.index > listSize || index < 1)
             throw new DukeException("doneWrongIndexRange");
         Task t = tasks.getTasks().get(index - 1);
-        if (t.isDone) throw new DukeException("doneComplectedTask");
+        if (t.isDone()) throw new DukeException("doneComplectedTask");
         t.markAsDone();
         String output = "     Nice! I've marked this task as done: \n" +
                             "       " + t.toString();

@@ -1,3 +1,5 @@
+package duke;
+
 public class DukeException extends Exception {
 
     //move the type of exception as enum

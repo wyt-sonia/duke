@@ -1,3 +1,8 @@
+package duke;
+
+import duke.command.Command;
+import duke.task.TaskList;
+
 import java.io.FileNotFoundException;
 
 public class Duke {
