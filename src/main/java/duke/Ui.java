@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Ui {
     private final Scanner scanner = new Scanner(System.in);
     private final String line = "     ___________________________________________________________________\n";
-    private String greeting =  "     Hello! I'm Duke, a task list chat box\n" +
+    private String greeting =  "     Hello! I'm duke.Duke, a task list chat box\n" +
                     "     You can key in your tasks and I'll keep track of them for you.\n\n" +
                     "     ============================== Guide ==============================\n" +
                     "     There are three types of tasks I'm able to keep track of.\n\n" +

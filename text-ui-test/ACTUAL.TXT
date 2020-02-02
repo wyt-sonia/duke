@@ -1,5 +1,5 @@
     ____________________________________________________________
-     Hello! I'm Duke, a task list chat box
+     Hello! I'm duke.Duke, a task list chat box
      You can key in your tasks and I'll keep track of them for you.
 
      ============================== Guide ==============================

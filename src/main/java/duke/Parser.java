@@ -8,7 +8,6 @@ import duke.task.ToDo;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
-import java.util.Scanner;
 
 public class Parser {
 

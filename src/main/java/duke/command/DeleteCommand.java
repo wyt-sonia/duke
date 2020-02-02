@@ -18,7 +18,7 @@ public class DeleteCommand extends Command {
         int listSize = tasks.getSize();
         if (listSize == 0) throw new DukeException("emptyList");
         if (this.index > listSize || index < 1)
-            throw new DukeException("doneWrongIndexRange");
+            throw new DukeException("deleteWrongIndexRange");
         Task t = tasks.getTasks().get(index - 1);
         String output =  "     Noted. I've removed this task: \n" +
                          "       " + t.toString() + "\n" +
