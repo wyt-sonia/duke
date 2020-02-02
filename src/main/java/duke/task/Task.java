@@ -9,10 +9,10 @@ enum TaskType {
 }
 
 public class Task {
+    public static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
     protected String taskName;
     protected boolean isDone;
     protected TaskType type;
-    public static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
 
     public Task() {
 
@@ -41,7 +41,7 @@ public class Task {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.getStatusString() + " " + this.getTaskName();
     }
 

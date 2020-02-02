@@ -22,6 +22,10 @@ public class Duke {
         }
     }
 
+    public static void main(String[] args) throws FileNotFoundException {
+        new Duke("data/tasks.txt").run();
+    }
+
     public void run() {
         this.ui.showWelcome();
         boolean isExit = false;
@@ -39,9 +43,5 @@ public class Duke {
                 ui.showLine();
             }
         }
-    }
-
-    public static void main(String[] args) throws FileNotFoundException {
-        new Duke("data/tasks.txt").run();
     }
 }

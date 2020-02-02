@@ -10,7 +10,7 @@ public class Deadline extends Task {
         this.by = by;
     }
 
-    public Deadline (String description, LocalDateTime by, boolean isDone) {
+    public Deadline(String description, LocalDateTime by, boolean isDone) {
         super(description, TaskType.DEADLINE);
         this.isDone = isDone;
         this.by = by;

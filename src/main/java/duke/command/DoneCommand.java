@@ -16,14 +16,19 @@ public class DoneCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         int listSize = tasks.getSize();
-        if (listSize == 0) throw new DukeException("emptyList");
-        if (this.index > listSize || index < 1)
+        if (listSize == 0) {
+            throw new DukeException("emptyList");
+        }
+        if (this.index > listSize || index < 1) {
             throw new DukeException("doneWrongIndexRange");
+        }
         Task t = tasks.getTasks().get(index - 1);
-        if (t.isDone()) throw new DukeException("doneComplectedTask");
+        if (t.isDone()) {
+            throw new DukeException("doneComplectedTask");
+        }
         t.markAsDone();
         String output = "     Nice! I've marked this task as done: \n" +
-                            "       " + t.toString();
+                "       " + t.toString();
         System.out.println(output);
         storage.save(tasks);
     }

@@ -6,19 +6,27 @@ import duke.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
-public class ShowListCommand extends Command {
+public class FindCommand extends Command {
+    private String keyword;
+
+    public FindCommand(String keyWord) {
+        this.keyword = keyWord;
+    }
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        String output = "";
+        String output = "     Here are the matching tasks in your list:\n";
         if (tasks.getSize() == 0) {
             ui.showErrorMessage(new DukeException("emptyList"));
         } else {
+            int counter = 0;
             for (Task t : tasks.getTasks()) {
-                int counter = tasks.getTasks().indexOf(t);
-                output += "       " + (counter + 1) + "." + t.toString();
-                if (tasks.getSize() - counter > 1) {
-                    output += "\n";
+                if (t.getTaskName().contains(this.keyword)) {
+                    output += "       " + (counter + 1) + "." + t.toString();
+                    if (tasks.getSize() - counter > 1) {
+                        output += "\n";
+                    }
+                    counter++;
                 }
             }
         }
