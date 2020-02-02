@@ -33,6 +33,10 @@ public class DukeException extends Exception {
             this.errorMessage += "Please use an integer as index number.";
             break;
 
+        case "findMissingKeyword":
+            this.errorMessage += "Please enter your search keyword.";
+            break;
+
         case "doneWrongIndexRange":
             //Fallthrough
         case "deleteWrongIndexRange":

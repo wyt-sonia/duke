@@ -13,14 +13,17 @@ public class Task {
      * The acceptable data and time format.
      */
     public static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
+
     /**
      * The description of task.
      */
     protected String description;
+
     /**
      * The isDone status of task, true for done.
      */
     protected boolean isDone;
+
     /**
      * The type of the task.
      */

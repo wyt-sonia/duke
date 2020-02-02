@@ -56,6 +56,19 @@ public class TaskList {
      *
      * @return The human readable String of the tasks list.
      */
+    public String getTaskListString() {
+        String listOfTasks = "";
+
+        for (Task t : this.tasks) {
+            int counter = this.tasks.indexOf(t);
+            if (counter != 0) {
+                listOfTasks += "     ";
+            }
+            listOfTasks += counter + 1 + "." + t.toString() + "\n";
+        }
+        return this.tasks.size() != 0 ? listOfTasks : "- No task was entered -\n";
+    }
+
     public String getSavedString() {
         String tasks = "";
         for (Task t : this.tasks) {

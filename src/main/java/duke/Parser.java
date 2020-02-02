@@ -6,6 +6,7 @@ import duke.command.ShowListCommand;
 import duke.command.DoneCommand;
 import duke.command.AddCommand;
 import duke.command.DeleteCommand;
+import duke.command.FindCommand;
 
 import duke.task.Deadline;
 import duke.task.Event;
@@ -41,6 +42,7 @@ public class Parser {
         if (fullCommand.isBlank()) {
             throw new DukeException("randomInput");
         }
+
         String[] inputParts = fullCommand.split(" ", 2);
         String option = inputParts[0];
         String desc = inputParts.length == 2 ? inputParts[1] : "";
@@ -123,6 +125,13 @@ public class Parser {
                 throw new DukeException("deleteWrongIndexFormat");
             }
             command = new DeleteCommand(Integer.parseInt(desc));
+            break;
+
+        case "find":
+            if (desc.isBlank()) {
+                throw new DukeException("findMissingKeyword");
+            }
+            command = new FindCommand(desc);
             break;
 
         default:
