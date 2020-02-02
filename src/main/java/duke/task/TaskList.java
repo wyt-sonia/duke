@@ -58,19 +58,21 @@ public class TaskList {
      */
     public String getSavedString() {
         String tasks = "";
-        for(Task t : this.tasks) {
+        for (Task t : this.tasks) {
             String temp = "";
             int status = t.isDone ? 1 : 0;
             switch (t.type) {
-                case TODO:
-                    temp += "T | " + status + " | " + t.getDescription() + "\n";
-                    break;
-                case DEADLINE:
-                    temp += "D | "+ status + " | " + t.getDescription() + " | " + ((Deadline)t).getDateTimeString() + "\n";
-                    break;
-                case EVENT:
-                    temp += "E | "+ status + " | " + t.getDescription() + " | " + ((Event)t).getAt() + "\n";
-                    break;
+            case TODO:
+                temp += "T | " + status + " | " + t.getDescription() + "\n";
+                break;
+            case DEADLINE:
+                temp += "D | " + status + " | " + t.getDescription() + " | "
+                        + ((Deadline) t).getDateTimeString() + "\n";
+                break;
+            case EVENT:
+                temp += "E | " + status + " | " + t.getDescription() + " | " + ((Event) t).getAt() + "\n";
+                break;
+            default:
             }
             tasks += temp;
         }

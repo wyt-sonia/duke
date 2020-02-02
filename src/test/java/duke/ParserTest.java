@@ -2,41 +2,42 @@ package duke;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParserTest {
 
     @Test
-    public void parserTest_randomInput_throwDukeException(){
-        DukeException actualException = Assertions.assertThrows(DukeException.class, ()->{
+    public void parserTest_randomInput_throwDukeException() {
+        DukeException actualException = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("test  ");
         });
         assertEquals("randomInput", actualException.getMessage());
     }
 
     @Test
-    public void parserTest_missingDescriptionTest_throwDukeException(){
-        DukeException actualException1 = Assertions.assertThrows(DukeException.class, ()->{
+    public void parserTest_missingDescriptionTest_throwDukeException() {
+        DukeException actualException1 = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("todo");
         });
 
-        DukeException actualException2 = Assertions.assertThrows(DukeException.class, ()->{
+        DukeException actualException2 = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("todo  ");
         });
 
-        DukeException actualException3 = Assertions.assertThrows(DukeException.class, ()->{
+        DukeException actualException3 = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("deadline");
         });
 
-        DukeException actualException4 = Assertions.assertThrows(DukeException.class, ()->{
+        DukeException actualException4 = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("deadline  ");
         });
 
-        DukeException actualException5 = Assertions.assertThrows(DukeException.class, ()->{
+        DukeException actualException5 = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("event");
         });
 
-        DukeException actualException6 = Assertions.assertThrows(DukeException.class, ()->{
+        DukeException actualException6 = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("event  ");
         });
 
@@ -49,20 +50,20 @@ public class ParserTest {
     }
 
     @Test
-    public void parserTest_missingIndexTest_throwDukeException(){
-        DukeException actualException1 = Assertions.assertThrows(DukeException.class, ()->{
+    public void parserTest_missingIndexTest_throwDukeException() {
+        DukeException actualException1 = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("done");
         });
 
-        DukeException actualException2 = Assertions.assertThrows(DukeException.class, ()->{
+        DukeException actualException2 = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("done  ");
         });
 
-        DukeException actualException3 = Assertions.assertThrows(DukeException.class, ()->{
+        DukeException actualException3 = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("delete");
         });
 
-        DukeException actualException4 = Assertions.assertThrows(DukeException.class, ()->{
+        DukeException actualException4 = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("delete  ");
         });
 
@@ -74,12 +75,12 @@ public class ParserTest {
     }
 
     @Test
-    public void parserTest_wrongIndexFormatTest_throwDukeException(){
-        DukeException actualExceptionDone = Assertions.assertThrows(DukeException.class, ()->{
+    public void parserTest_wrongIndexFormatTest_throwDukeException() {
+        DukeException actualExceptionDone = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("done 12test");
         });
 
-        DukeException actualExceptionDelete = Assertions.assertThrows(DukeException.class, ()->{
+        DukeException actualExceptionDelete = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("delete 12test");
         });
 
@@ -89,27 +90,27 @@ public class ParserTest {
 
     @Test
     public void parserTest_wrongDescriptionFormat_throwException() {
-        DukeException actualExceptionDeadlineMissingName = Assertions.assertThrows(DukeException.class, ()->{
+        DukeException actualExceptionDeadlineMissingName = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("deadline /by 12:12 12/12/2020");
         });
 
-        DukeException actualExceptionDeadlineMissingBy = Assertions.assertThrows(DukeException.class, ()->{
+        DukeException actualExceptionDeadlineMissingBy = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("deadline test 12:12 12/12/2020");
         });
 
-        DukeException actualExceptionDeadlineMissingDateTime = Assertions.assertThrows(DukeException.class, ()->{
+        DukeException actualExceptionDeadlineMissingDateTime = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("deadline test /by");
         });
 
-        DukeException actualExceptionEventMissingName = Assertions.assertThrows(DukeException.class, ()->{
+        DukeException actualExceptionEventMissingName = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("event /at 2-4pm 12/12/2020");
         });
 
-        DukeException actualExceptionEventMissingAt = Assertions.assertThrows(DukeException.class, ()->{
+        DukeException actualExceptionEventMissingAt = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("event test 2-4pm 12/12/2020");
         });
 
-        DukeException actualExceptionEventMissingDateTime = Assertions.assertThrows(DukeException.class, ()->{
+        DukeException actualExceptionEventMissingDateTime = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("event test /at");
         });
 
@@ -122,8 +123,8 @@ public class ParserTest {
     }
 
     @Test
-    public void parserTest_wrongDateTimeFormat_throwException(){
-        DukeException actualExceptionDeadlineWrongDateTimeFormat = Assertions.assertThrows(DukeException.class, ()->{
+    public void parserTest_wrongDateTimeFormat_throwException() {
+        DukeException actualExceptionDeadlineWrongDateTimeFormat = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("deadline test /by invalidDateTime");
         });
 
@@ -132,8 +133,8 @@ public class ParserTest {
     }
 
     @Test
-    public void parserTest_pastDateTime_throwDukeException(){
-        DukeException actualException = Assertions.assertThrows(DukeException.class, ()->{
+    public void parserTest_pastDateTime_throwDukeException() {
+        DukeException actualException = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("deadline test /by 12:12 12/12/2010");
         });
         assertEquals("pastDateTime", actualException.getMessage());

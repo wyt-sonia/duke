@@ -15,10 +15,10 @@ public class ExitCommand extends Command {
     /**
      * Executes command to exit the program.
      *
-     * @param tasks The list of current tasks from storage.
-     * @param ui The current UI.
+     * @param tasks   The list of current tasks from storage.
+     * @param ui      The current UI.
      * @param storage The system storage, used as database.
-     * @throws DukeException
+     * @throws DukeException If there is any DukeException.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

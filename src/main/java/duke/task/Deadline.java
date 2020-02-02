@@ -15,7 +15,7 @@ public class Deadline extends Task {
     protected LocalDateTime by;
 
     /**
-     * Creates a new <code>Deadline<code/> with the given <code>description</code> and <code>by</code> (date and time).
+     * Creates a new <code>Deadline</code> with the given <code>description</code> and <code>by</code> (date and time).
      */
     public Deadline(String description, LocalDateTime by) {
         super(description, TaskType.DEADLINE);
@@ -23,10 +23,10 @@ public class Deadline extends Task {
     }
 
     /**
-     * Creates a new <code>Deadline<code/> with the given <code>description</code>, <code>by</code> (date and time) and
+     * Creates a new <code>Deadline</code> with the given <code>description</code>, <code>by</code> (date and time) and
      * <code>isDone</code>.
      */
-    public Deadline (String description, LocalDateTime by, boolean isDone) {
+    public Deadline(String description, LocalDateTime by, boolean isDone) {
         super(description, TaskType.DEADLINE);
         this.isDone = isDone;
         this.by = by;
@@ -44,7 +44,7 @@ public class Deadline extends Task {
     /**
      * Sets the <code>by</code> (date and time) of the <code>Deadline</code>.
      *
-     * @param  by Date and time of the <code>Deadline</code>.
+     * @param by Date and time of the <code>Deadline</code>.
      */
     public void setBy(LocalDateTime by) {
         this.by = by;
@@ -57,9 +57,9 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() +
-                " (by: " + by.getHour() + ":" + by.getMinute() +
-                " " + by.getDayOfMonth() + "/" + by.getMonthValue() + "/" + by.getYear() + ")";
+        return "[D]" + super.toString()
+                + " (by: " + by.getHour() + ":" + by.getMinute()
+                + " " + by.getDayOfMonth() + "/" + by.getMonthValue() + "/" + by.getYear() + ")";
     }
 
     /**
@@ -68,7 +68,7 @@ public class Deadline extends Task {
      * @return The <code>by</code> (date and time) of the <code>Deadline</code> in String.
      */
     public String getDateTimeString() {
-        return by.getHour() + ":" + by.getMinute() +
-                " " + by.getDayOfMonth() + "/" + by.getMonthValue() + "/" + by.getYear();
+        return by.getHour() + ":" + by.getMinute()
+                + " " + by.getDayOfMonth() + "/" + by.getMonthValue() + "/" + by.getYear();
     }
 }

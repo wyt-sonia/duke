@@ -8,14 +8,14 @@ package duke.task;
 public class ToDo extends Task {
 
     /**
-     * Creates a new <code>Event<code/> with the given <code>description</code>.
+     * Creates a new <code>Event</code> with the given <code>description</code>.
      */
     public ToDo(String description) {
         super(description, TaskType.TODO);
     }
 
     /**
-     * Creates a new <code>Event<code/> with the given <code>description</code> and <code>isDone</code>.
+     * Creates a new <code>Event</code> with the given <code>description</code> and <code>isDone</code>.
      */
     public ToDo(String description, boolean isDone) {
         super(description, TaskType.TODO);
@@ -29,6 +29,6 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
-        return "[T]" + super.toString() ;
+        return "[T]" + super.toString();
     }
 }

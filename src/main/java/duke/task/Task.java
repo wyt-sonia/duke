@@ -3,29 +3,6 @@ package duke.task;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Different task types.
- *
- * @author Wang Yuting
- */
-enum TaskType {
-
-    /**
-     * ToDo Rask.
-     */
-    TODO,
-
-    /**
-     * Deadline Rask.
-     */
-    DEADLINE,
-
-    /**
-     * Event Rask.
-     */
-    EVENT
-}
-
-/**
  * Represents a task.
  *
  * @author Wang Yuting
@@ -33,24 +10,21 @@ enum TaskType {
 public class Task {
 
     /**
+     * The acceptable data and time format.
+     */
+    public static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
+    /**
      * The description of task.
      */
     protected String description;
-
     /**
      * The isDone status of task, true for done.
      */
     protected boolean isDone;
-
     /**
      * The type of the task.
      */
     protected TaskType type;
-
-    /**
-     * The acceptable data and time format.
-     */
-    public static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
 
     /**
      * Creates a <code>Task</code>.
@@ -108,7 +82,7 @@ public class Task {
      * @return The detail of <code>Task</code> in String.
      */
     @Override
-    public String toString(){
+    public String toString() {
         return this.getStatusString() + " " + this.getDescription();
     }
 

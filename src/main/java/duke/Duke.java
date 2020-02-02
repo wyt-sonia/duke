@@ -1,9 +1,7 @@
 package duke;
 
-import duke.DukeException;
 import duke.command.Command;
 import duke.task.TaskList;
-
 
 import java.io.FileNotFoundException;
 
@@ -34,6 +32,15 @@ public class Duke {
     }
 
     /**
+     * The entry point of the program.
+     *
+     * @param args The input arguments.
+     */
+    public static void main(String[] args) throws FileNotFoundException {
+        new Duke("data/tasks.txt").run();
+    }
+
+    /**
      * Executes the duke program.
      */
     public void run() {
@@ -53,14 +60,5 @@ public class Duke {
                 ui.showLine();
             }
         }
-    }
-
-    /**
-     * The entry point of the program.
-     *
-     * @param args The input arguments.
-     */
-    public static void main(String[] args) throws FileNotFoundException {
-        new Duke("data/tasks.txt").run();
     }
 }

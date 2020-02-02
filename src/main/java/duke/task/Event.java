@@ -13,7 +13,7 @@ public class Event extends Task {
     protected String at;
 
     /**
-     * Creates a new <code>Event<code/> with the given <code>description</code> and <code>at</code> (date and time).
+     * Creates a new <code>Event</code> with the given <code>description</code> and <code>at</code> (date and time).
      */
     public Event(String description, String at) {
         super(description, TaskType.EVENT);
@@ -21,7 +21,7 @@ public class Event extends Task {
     }
 
     /**
-     * Creates a new <code>Event<code/> with the given <code>description</code>, <code>at</code> (date and time) and
+     * Creates a new <code>Event</code> with the given <code>description</code>, <code>at</code> (date and time) and
      * <code>isDone</code>.
      */
     public Event(String description, String at, boolean isDone) {

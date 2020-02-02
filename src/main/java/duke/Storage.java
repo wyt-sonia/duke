@@ -10,7 +10,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,38 +34,39 @@ public class Storage {
     /**
      * Loads saved tasks from the storage.
      *
-     * @return An <code>ArrayList<Task></code> if there is any saved tasks, NULL if not.
+     * @return An <code>ArrayList</code> of <code>Task</code> if there is any saved tasks, NULL if not.
      */
     public ArrayList<Task> load() {
         ArrayList<Task> records = new ArrayList<>();
-        try{
+        try {
             File f = new File(this.filepath);
             Scanner s = new Scanner(f); // create a Scanner using the File as the source
             while (s.hasNextLine()) {
                 String taskRecord = s.nextLine();
-                String[] recordInfo = taskRecord.split("\\|");
+                String[] recordInfoParts = taskRecord.split("\\|");
                 Task temp = null;
                 boolean isDone = false;
-                if (recordInfo[1].trim().equals("1"))
+                if (recordInfoParts[1].trim().equals("1")) {
                     isDone = true;
-                switch (recordInfo[0].trim()) {
-                    case "T":
-                        temp = new ToDo(recordInfo[2].trim(), isDone);
-                        break;
-                    case "D":
-                        temp = new Deadline(recordInfo[2].trim(), LocalDateTime.parse(recordInfo[3].trim(), Task.DATETIME_FORMAT), isDone);
-                        break;
-                    case "E":
-                        temp = new Event(recordInfo[2].trim(), recordInfo[3].trim(), isDone);
-                        break;
+                }
+                switch (recordInfoParts[0].trim()) {
+                case "T":
+                    temp = new ToDo(recordInfoParts[2].trim(), isDone);
+                    break;
+                case "D":
+                    temp = new Deadline(recordInfoParts[2].trim(), LocalDateTime.parse(recordInfoParts[3].trim(),
+                            Task.DATETIME_FORMAT), isDone);
+                    break;
+                case "E":
+                    temp = new Event(recordInfoParts[2].trim(), recordInfoParts[3].trim(), isDone);
+                    break;
+                default:
                 }
                 records.add(temp);
             }
-        }
-        catch (FileNotFoundException ex) {
+        } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
-        }
-        finally {
+        } finally {
             return records;
         }
     }
@@ -75,12 +78,11 @@ public class Storage {
      * @throws DukeException If there is any IOException.
      */
     public void save(TaskList taskList) throws DukeException {
-        try{
+        try {
             FileWriter fw = new FileWriter(this.filepath, false);
             fw.write(taskList.getSavedString());
             fw.close();
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             throw new DukeException(ex.getMessage());
         }
     }

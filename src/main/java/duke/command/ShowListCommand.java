@@ -16,10 +16,10 @@ public class ShowListCommand extends Command {
     /**
      * Executes command to display all current tasks in system storage.
      *
-     * @param tasks The list of current tasks from storage.
-     * @param ui The current UI.
+     * @param tasks   The list of current tasks from storage.
+     * @param ui      The current UI.
      * @param storage The system storage, used as database.
-     * @throws DukeException If there is no task in current <code>tasks<code/>.
+     * @throws DukeException If there is no task in current <code>tasks</code>.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
@@ -29,8 +29,10 @@ public class ShowListCommand extends Command {
         } else {
             for (Task t : tasks.getTasks()) {
                 int counter = tasks.getTasks().indexOf(t);
-                output += "       " +  (counter + 1) + "." + t.toString();
-                if (tasks.getSize() - counter > 1) output += "\n";
+                output += "       " + (counter + 1) + "." + t.toString();
+                if (tasks.getSize() - counter > 1) {
+                    output += "\n";
+                }
             }
         }
         ui.displayOutput(output);
