@@ -1,10 +1,20 @@
 package duke;
 
+/**
+ * Represents exception in duke program.
+ *
+ * @author Wang Yuting
+ */
 public class DukeException extends Exception {
 
-    //move the type of exception as enum
-
+    /**
+     * The error message of <code>DukeException</code>.
+     */
     protected String errorMessage = "     ☹ OOPS!!! ";
+
+    /**
+     * Creats a <code>DukeException</code> with given message.
+     */
     public DukeException(String message) {
         super(message);
 

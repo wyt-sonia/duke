@@ -1,24 +1,40 @@
 package duke;
 
-import duke.task.*;
+import duke.task.ToDo;
+import duke.task.Event;
+import duke.task.Deadline;
+import duke.task.Task;
+import duke.task.TaskList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents a storage which stores the tasks details.
+ *
+ * @author Wang Yuting
+ */
 public class Storage {
     private String filepath;
 
+    /**
+     * Creates a <code>Storage</code> with given <code>filepath</code>.
+     */
     public Storage(String filepath) {
         this.filepath = filepath;
     }
 
-    public ArrayList<Task> load() throws DukeException {
+    /**
+     * Loads saved tasks from the storage.
+     *
+     * @return An <code>ArrayList<Task></code> if there is any saved tasks, NULL if not.
+     */
+    public ArrayList<Task> load() {
         ArrayList<Task> records = new ArrayList<>();
         try{
             File f = new File(this.filepath);
@@ -45,16 +61,19 @@ public class Storage {
             }
         }
         catch (FileNotFoundException ex) {
-            throw new DukeException("FileNotFound");
-        }
-        catch (DateTimeParseException e) {
-            throw new DukeException("DateTimeParseError");
+            System.out.println(ex.getMessage());
         }
         finally {
             return records;
         }
     }
 
+    /**
+     * Saves current tasks to the storage.
+     *
+     * @param taskList Current tasks list.
+     * @throws DukeException If there is any IOException.
+     */
     public void save(TaskList taskList) throws DukeException {
         try{
             FileWriter fw = new FileWriter(this.filepath, false);

@@ -9,12 +9,27 @@ import duke.task.ToDo;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a parser which handle the parsing of user input.
+ *
+ * @author Wang Yuting
+ */
 public class Parser {
 
+    /**
+     * Creates a <code>Parser</code>.
+     */
     public Parser(){
 
     }
 
+    /**
+     * Parse a user input to get valid <code>Command</code>.
+     *
+     * @param fullCommand The raw user input read by <code>UI</code>.
+     * @throws DukeException If the input is not valid.
+     * @return A valid <code>Command</code>.
+     */
     public static Command parse(String fullCommand) throws DukeException {
         Command command = null;
         if(fullCommand.isBlank()) throw new DukeException("randomInput");
@@ -81,6 +96,12 @@ public class Parser {
         return command;
     }
 
+    /**
+     * Checks whether the input String is an integer.
+     *
+     * @param s The input String need to be checked.
+     * @return True if the String is an integer, false if it is not.
+     */
     public static boolean isInteger(String s) {
         try {
             Integer.parseInt(s);

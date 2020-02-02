@@ -1,7 +1,11 @@
 package duke;
 
 import java.util.Scanner;
-
+/**
+ * Represents the program ui which handles the interaction with user.
+ *
+ * @author Wang Yuting
+ */
 public class Ui {
     private final Scanner scanner = new Scanner(System.in);
     private final String line = "     ___________________________________________________________________\n";
@@ -19,25 +23,45 @@ public class Ui {
                     "     To terminate me, please use \"bye\".\n" +
                     "     What can I do for you?";
 
+    /**
+     * Displays the welcome message.
+     */
     public void showWelcome() {
         this.showLine();
         System.out.println(greeting);
         this.showLine();
     }
 
+    /**
+     * Displays a line.
+     */
     public void showLine() {
         System.out.println(this.line);
     }
 
-
+    /**
+     * Displays an error message.
+     *
+     * @param ex The exception encountered.
+     */
     public void showErrorMessage(DukeException ex) {
         System.out.println(ex.errorMessage);
     }
 
+    /**
+     * Reads user input.
+     *
+     * @return The input read from keyboard.
+     */
     public String readCommand() {
         return this.scanner.nextLine();
     }
 
+    /**
+     * Displays the outpur.
+     *
+     * @param output The output which will be displayed.
+     */
     public void displayOutput(String output) {
         System.out.println(output);
     }

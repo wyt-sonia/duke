@@ -6,13 +6,32 @@ import duke.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
+/**
+ * Represents a command that used to mark a task at <code>index<code/> as done.
+ *
+ * @author Wang Yuting
+ */
 public class DoneCommand extends Command {
+
     private int index;
 
+    /**
+     * Creates a new <code>DoneCommand<code/> with the given index.
+     */
     public DoneCommand(int index) {
         this.index = index;
     }
 
+    /**
+     * Executes command to mark a task at <code>index<code/> as done.
+     *
+     * @param tasks The list of current tasks from storage.
+     * @param ui The current UI.
+     * @param storage The system storage, used as database.
+     * @throws DukeException If there is no task in current <code>tasks<code/>,
+     *                       the <code>index<code/> is out side of the valid range
+     *                       or the selected task is done already.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         int listSize = tasks.getSize();
@@ -28,6 +47,11 @@ public class DoneCommand extends Command {
         storage.save(tasks);
     }
 
+    /**
+     * Returns true if it is an exit command.
+     *
+     * @return False, as it is not an exit command.
+     */
     @Override
     public boolean isExit() {
         return false;

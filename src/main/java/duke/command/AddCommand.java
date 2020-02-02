@@ -6,13 +6,30 @@ import duke.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
+/**
+ * Represents a command that used to handle new task insertion.
+ *
+ * @author Wang Yuting
+ */
 public class AddCommand extends Command {
+
     private Task task;
 
+    /**
+     * Creates a new <code>AddCommand<code/> with the given <code>task</code>.
+     */
     public AddCommand(Task task) {
         this.task = task;
     }
 
+    /**
+     * Executes command to insert new task into system storage.
+     *
+     * @param tasks The list of current tasks from storage.
+     * @param ui The current UI.
+     * @param storage The system storage, used as database.
+     * @throws DukeException
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         tasks.getTasks().add(task);
@@ -23,6 +40,11 @@ public class AddCommand extends Command {
         storage.save(tasks);
     }
 
+    /**
+     * Returns true if it is an exit command.
+     *
+     * @return False, as it is not an exit command.
+     */
     @Override
     public boolean isExit() {
         return false;
