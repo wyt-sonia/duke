@@ -25,32 +25,23 @@ public class TaskList {
         return tasks.remove(index);
     }
 
-    public String getTaskListString() {
-        String listOfTasks = "";
-
-        for(Task t : this.tasks) {
-            int counter = this.tasks.indexOf(t);
-            if (counter != 0) listOfTasks += "     ";
-            listOfTasks += counter + 1 + "." + t.toString() + "\n";
-        }
-        return this.tasks.size() != 0 ? listOfTasks : "- No task was entered -\n";
-    }
-
     public String getSavedString() {
         String tasks = "";
-        for(Task t : this.tasks) {
+        for (Task t : this.tasks) {
             String temp = "";
             int status = t.isDone ? 1 : 0;
             switch (t.type) {
-                case TODO:
-                    temp += "T | " + status + " | " + t.getTaskName() + "\n";
-                    break;
-                case DEADLINE:
-                    temp += "D | "+ status + " | " + t.getTaskName() + " | " + ((Deadline)t).getDateTimeString() + "\n";
-                    break;
-                case EVENT:
-                    temp += "E | "+ status + " | " + t.getTaskName() + " | " + ((Event)t).getAt() + "\n";
-                    break;
+            case TODO:
+                temp += "T | " + status + " | " + t.getDescription() + "\n";
+                break;
+            case DEADLINE:
+                temp += "D | " + status + " | " + t.getDescription() + " | "
+                        + ((Deadline) t).getDateTimeString() + "\n";
+                break;
+            case EVENT:
+                temp += "E | " + status + " | " + t.getDescription() + " | " + ((Event) t).getAt() + "\n";
+                break;
+            default:
             }
             tasks += temp;
         }

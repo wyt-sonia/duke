@@ -2,24 +2,22 @@ package duke.task;
 
 import java.time.format.DateTimeFormatter;
 
-enum TaskType {
-    TODO,
-    DEADLINE,
-    EVENT
-}
-
 public class Task {
-    protected String taskName;
+
+    protected String description;
+
     protected boolean isDone;
+
     protected TaskType type;
+
     public static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
 
     public Task() {
 
     }
 
-    public Task(String taskName, TaskType type) {
-        this.taskName = taskName;
+    public Task(String description, TaskType type) {
+        this.description = description;
         this.type = type;
         this.isDone = false;
     }
@@ -28,8 +26,8 @@ public class Task {
         return isDone;
     }
 
-    public String getTaskName() {
-        return taskName;
+    public String getDescription() {
+        return description;
     }
 
     public String getStatusString() {
@@ -39,10 +37,10 @@ public class Task {
     public void markAsDone() {
         this.isDone = true;
     }
-
+    
     @Override
-    public String toString(){
-        return this.getStatusString() + " " + this.getTaskName();
+    public String toString() {
+        return this.getStatusString() + " " + this.getDescription();
     }
 
 }

@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.DukeException;
-import duke.Parser;
 import duke.Storage;
 import duke.Ui;
 import duke.task.Task;
@@ -17,18 +16,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DeleteCommandTest {
 
     @Test
-    public void deleteCommandTest_wrongIndexRange_throwDukeException(){
-        DukeException actualException1 = Assertions.assertThrows(DukeException.class, ()->{
-            ArrayList<Task> testArrList = new ArrayList<Task>();
-            testArrList.add(new ToDo("test"));
-            TaskList testList = new TaskList(testArrList);
+    public void deleteCommandTest_wrongIndexRange_throwDukeException() {
+        DukeException actualException1 = Assertions.assertThrows(DukeException.class, () -> {
+            ArrayList<Task> tasks = new ArrayList<Task>();
+            tasks.add(new ToDo("test"));
+            TaskList testList = new TaskList(tasks);
             new DeleteCommand(3).execute(testList, new Ui(), new Storage("tasks.txt"));
         });
 
-        DukeException actualException2 = Assertions.assertThrows(DukeException.class, ()->{
-            ArrayList<Task> testArrList = new ArrayList<Task>();
-            testArrList.add(new ToDo("test"));
-            TaskList testList = new TaskList(testArrList);
+        DukeException actualException2 = Assertions.assertThrows(DukeException.class, () -> {
+            ArrayList<Task> tasks = new ArrayList<Task>();
+            tasks.add(new ToDo("test"));
+            TaskList testList = new TaskList(tasks);
             new DeleteCommand(-1).execute(testList, new Ui(), new Storage("tasks.txt"));
         });
 

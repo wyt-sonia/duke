@@ -16,8 +16,10 @@ public class ShowListCommand extends Command {
         } else {
             for (Task t : tasks.getTasks()) {
                 int counter = tasks.getTasks().indexOf(t);
-                output += "       " +  (counter + 1) + "." + t.toString();
-                if (tasks.getSize() - counter > 1) output += "\n";
+                output += "       " + (counter + 1) + "." + t.toString();
+                if (tasks.getSize() - counter > 1) {
+                    output += "\n";
+                }
             }
         }
         ui.displayOutput(output);
