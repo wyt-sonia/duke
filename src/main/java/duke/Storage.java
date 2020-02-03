@@ -61,6 +61,7 @@ public class Storage {
                     temp = new Event(recordInfoParts[2].trim(), recordInfoParts[3].trim(), isDone);
                     break;
                 default:
+                    break;
                 }
                 records.add(temp);
             }

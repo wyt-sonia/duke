@@ -86,6 +86,7 @@ public class TaskList {
                 temp += "E | " + status + " | " + t.getDescription() + " | " + ((Event) t).getAt() + "\n";
                 break;
             default:
+                break;
             }
             tasks += temp;
         }

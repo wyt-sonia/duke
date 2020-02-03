@@ -76,9 +76,10 @@ public class DukeException extends Exception {
             this.errorMessage += "Invalid date time format, please follow the format below:\n       "
                     + "HH:mm dd/MM/yyyy   e.g. 12:00 01/01/2020";
             break;
+
         default:
             this.errorMessage += "Something went wrong: " + message;
-
+            break;
         }
     }
 }
