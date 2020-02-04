@@ -9,10 +9,9 @@ import java.util.Scanner;
  */
 public class Ui {
     private Scanner sacnner = new Scanner(System.in);
-    private String line = "     ___________________________________________________________________\n";
     private String greeting = "     Hello! I'm duke.Duke, a task list chat box\n"
             + "     You can key in your tasks and I'll keep track of them for you.\n\n"
-            + "     ============================== Guide ==============================\n"
+            + "     Guide: \n"
             + "     There are three types of tasks I'm able to keep track of.\n\n"
             + "         Todo: use \"todo + description\" to create (e.g. todo taskInfo).\n\n"
             + "         Deadline: use \"deadline + description + /by + date\" to create \n"
@@ -27,17 +26,8 @@ public class Ui {
     /**
      * Displays the welcome message.
      */
-    public void showWelcome() {
-        this.showLine();
-        System.out.println(greeting);
-        this.showLine();
-    }
-
-    /**
-     * Displays a line.
-     */
-    public void showLine() {
-        System.out.println(this.line);
+    public String getWelcome() {
+        return  greeting;
     }
 
     /**
@@ -45,8 +35,8 @@ public class Ui {
      *
      * @param ex The exception encountered.
      */
-    public void showErrorMessage(DukeException ex) {
-        System.out.println(ex.errorMessage);
+    public String getErrorMessage(DukeException ex) {
+        return ex.errorMessage;
     }
 
     /**

@@ -14,11 +14,12 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        String output = "     Here are the matching tasks in your list:\n";
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        String output = "";
         if (tasks.getSize() == 0) {
-            ui.showErrorMessage(new DukeException("emptyList"));
+            output = ui.getErrorMessage(new DukeException("emptyList"));
         } else {
+            output = "     Here are the matching tasks in your list:\n";
             int counter = 0;
             for (Task t : tasks.getTasks()) {
                 if (t.getDescription().contains(this.keyword)) {
@@ -30,7 +31,7 @@ public class FindCommand extends Command {
                 }
             }
         }
-        ui.displayOutput(output);
+        return output;
     }
 
     @Override

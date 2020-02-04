@@ -32,7 +32,7 @@ public class DeleteCommand extends Command {
      *                       or the <code>index</code> is out side of the valid range.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         int listSize = tasks.getSize();
         if (listSize == 0) {
             throw new DukeException("emptyList");
@@ -45,6 +45,7 @@ public class DeleteCommand extends Command {
                 + "       " + t.toString() + "\n"
                 + "     Now you have " + tasks.getSize() + " tasks in the list.";
         storage.save(tasks);
+        return output;
     }
 
     /**

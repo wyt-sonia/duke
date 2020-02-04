@@ -33,7 +33,7 @@ public class DoneCommand extends Command {
      *                       or the selected task is done already.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         int listSize = tasks.getSize();
         if (listSize == 0) {
             throw new DukeException("emptyList");
@@ -48,8 +48,8 @@ public class DoneCommand extends Command {
         t.markAsDone();
         String output = "     Nice! I've marked this task as done: \n"
                 + "       " + t.toString();
-        System.out.println(output);
         storage.save(tasks);
+        return output;
     }
 
     /**

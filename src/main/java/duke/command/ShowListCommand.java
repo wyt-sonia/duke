@@ -22,10 +22,10 @@ public class ShowListCommand extends Command {
      * @throws DukeException If there is no task in current <code>tasks</code>.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         String output = "";
         if (tasks.getSize() == 0) {
-            ui.showErrorMessage(new DukeException("emptyList"));
+            output = ui.getErrorMessage(new DukeException("emptyList"));
         } else {
             for (Task t : tasks.getTasks()) {
                 int counter = tasks.getTasks().indexOf(t);
@@ -35,7 +35,7 @@ public class ShowListCommand extends Command {
                 }
             }
         }
-        ui.displayOutput(output);
+        return output;
     }
 
     /**
