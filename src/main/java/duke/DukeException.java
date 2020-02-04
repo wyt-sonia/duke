@@ -10,7 +10,7 @@ public class DukeException extends Exception {
     /**
      * The error message of <code>DukeException</code>.
      */
-    protected String errorMessage = "     ☹ OOPS!!! ";
+    protected String errorMessage = "☹ OOPS!!! ";
 
     /**
      * Creats a <code>DukeException</code> with given message.
@@ -43,7 +43,7 @@ public class DukeException extends Exception {
             this.errorMessage += "Please enter valid task index.";
             break;
 
-        case "doneComplectedTask":
+        case "doneCompletedTask":
             this.errorMessage += "The task is already completed.";
             break;
 
@@ -65,7 +65,7 @@ public class DukeException extends Exception {
             break;
 
         case "pastDateTime":
-            this.errorMessage += "Please enter a time in the future.";
+            this.errorMessage += "The time you have inputted has already passed. Please enter a time in the future.";
             break;
 
         case "FileNotFound":

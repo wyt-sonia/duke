@@ -19,11 +19,11 @@ public class FindCommand extends Command {
         if (tasks.getSize() == 0) {
             output = ui.getErrorMessage(new DukeException("emptyList"));
         } else {
-            output = "     Here are the matching tasks in your list:\n";
+            output = "Here are the matching tasks in your list:\n";
             int counter = 0;
             for (Task t : tasks.getTasks()) {
                 if (t.getDescription().contains(this.keyword)) {
-                    output += "       " + (counter + 1) + "." + t.toString();
+                    output += "  " + (counter + 1) + "." + t.toString();
                     if (tasks.getSize() - counter > 1) {
                         output += "\n";
                     }

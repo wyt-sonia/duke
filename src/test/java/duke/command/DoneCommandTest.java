@@ -44,6 +44,6 @@ public class DoneCommandTest {
             TaskList testList = new TaskList(tasks);
             new DoneCommand(1).execute(testList, new Ui(), new Storage("tasks.txt"));
         });
-        assertEquals("doneComplectedTask", actualException.getMessage());
+        assertEquals("doneCompletedTask", actualException.getMessage());
     }
 }
