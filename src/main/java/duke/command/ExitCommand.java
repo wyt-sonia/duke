@@ -22,7 +22,7 @@ public class ExitCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        String output = "     Bye. Hope to see you again soon!";
+        String output = "Bye. Hope to see you again soon!";
         return output;
     }
 

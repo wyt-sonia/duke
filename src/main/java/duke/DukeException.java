@@ -10,7 +10,7 @@ public class DukeException extends Exception {
     /**
      * The error message of <code>DukeException</code>.
      */
-    protected String errorMessage = "     ☹ OOPS!!! ";
+    protected String errorMessage = "☹ OOPS!!! ";
 
     /**
      * Creats a <code>DukeException</code> with given message.
@@ -53,7 +53,7 @@ public class DukeException extends Exception {
 
         case "deadline&eventWrongDescriptionFormat":
             this.errorMessage += "Please follow the valid deadline/event creation format. "
-                    + "\n       e.g. deadline description /by date ; event description /at date";
+                    + "\n  e.g. deadline description /by date ; event description /at date";
             break;
 
         case "randomInput":
@@ -73,7 +73,7 @@ public class DukeException extends Exception {
             break;
 
         case "DateTimeParseError":
-            this.errorMessage += "Invalid date time format, please follow the format below:\n       "
+            this.errorMessage += "Invalid date time format, please follow the format below:\n  "
                     + "HH:mm dd/MM/yyyy   e.g. 12:00 01/01/2020";
             break;
 

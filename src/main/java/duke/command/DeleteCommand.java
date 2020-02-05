@@ -44,6 +44,7 @@ public class DeleteCommand extends Command {
         String output = "     Noted. I've removed this task: \n"
                 + "       " + t.toString() + "\n"
                 + "     Now you have " + tasks.getSize() + " tasks in the list.";
+        tasks.getTasks().remove(index - 1);
         storage.save(tasks);
         return output;
     }

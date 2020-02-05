@@ -46,8 +46,8 @@ public class DoneCommand extends Command {
             throw new DukeException("doneComplectedTask");
         }
         t.markAsDone();
-        String output = "     Nice! I've marked this task as done: \n"
-                + "       " + t.toString();
+        String output = "Nice! I've marked this task as done: \n"
+                + t.toString();
         storage.save(tasks);
         return output;
     }

@@ -62,7 +62,7 @@ public class TaskList {
         for (Task t : this.tasks) {
             int counter = this.tasks.indexOf(t);
             if (counter != 0) {
-                listOfTasks += "     ";
+                listOfTasks += "";
             }
             listOfTasks += counter + 1 + "." + t.toString() + "\n";
         }
