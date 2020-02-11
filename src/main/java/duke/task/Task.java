@@ -91,8 +91,6 @@ public class Task implements Comparable<Task> {
      * Marks isDone status of a <code>Task</code> as true.
      */
     public LocalDateTime getStartOrBy() {
-        assert this.type != TaskType.TODO : "Wrong attempt to get deadline or start date form a todo task"
-                + ", please check.";
         if (this.type == TaskType.DEADLINE) {
             return ((Deadline) this).getBy();
         } else {

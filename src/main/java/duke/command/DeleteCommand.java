@@ -43,8 +43,6 @@ public class DeleteCommand extends Command {
         }
 
         tasks.getTasks().remove(index - 1);
-        assert tasks.getSize() == originalListSize - 1 : "The size of task list didn't change after deletion,"
-                + " please check.";
         storage.save(tasks);
 
         String output = "Noted. I've removed this task: \n"
