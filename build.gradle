@@ -12,7 +12,7 @@ checkstyle {
 
 shadowJar {
     archiveBaseName = "duke"
-    archiveVersion = "0.1.8"
+    archiveVersion = "0.1.9"
     archiveClassifier = null
     archiveAppendix = null
 }
@@ -26,7 +26,7 @@ repositories {
 
 application {
     // Change this to your main class.
-    mainClassName = "duke.Duke"
+    mainClassName = "duke.Launcher"
 }
 
 run {
@@ -35,6 +35,7 @@ run {
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.5.0'
+
 }
 
 test {
