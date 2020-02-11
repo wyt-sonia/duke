@@ -2,6 +2,8 @@ package duke.task;
 
 import java.util.ArrayList;
 
+import duke.Parser;
+
 /**
  * Represents the task list.
  *
@@ -79,11 +81,14 @@ public class TaskList {
                 temp += "T | " + status + " | " + t.getDescription() + "\n";
                 break;
             case DEADLINE:
+                String deadlineDateTime = Parser.getDateTimeString(((Deadline)t).getBy());
                 temp += "D | " + status + " | " + t.getDescription() + " | "
-                        + ((Deadline) t).getDateTimeString() + "\n";
+                        + deadlineDateTime + "\n";
                 break;
             case EVENT:
-                temp += "E | " + status + " | " + t.getDescription() + " | " + ((Event) t).getAt() + "\n";
+                String eventDuration = Parser.getDateTimeString(((Event) t).getStart())
+                        + "-" + Parser.getDateTimeString(((Event) t).getEnd());
+                temp += "E | " + status + " | " + t.getDescription() + " | " + eventDuration + "\n";
                 break;
             default:
                 break;

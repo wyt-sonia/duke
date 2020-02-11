@@ -1,7 +1,5 @@
 package duke.command;
 
-import static java.util.stream.Collectors.toList;
-
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -43,7 +41,6 @@ public class FindCommand extends Command {
     /** Gets the output string of search result.*/
     private String getChosenTasksString(TaskList tasks){
         String output = "";
-        int counter = 0;
         ArrayList<Task> searchResult =
                 tasks.getTasks().stream()
                         .filter(t -> t.getDescription().contains(this.keyword))
@@ -53,7 +50,7 @@ public class FindCommand extends Command {
             output += "Here is no matching task in your list, please change a keyword.";
         } else {
             output += "Here are the matching tasks in your list:\n";
-            output += searchResult.stream().map(t-> (searchResult.indexOf(t) + 1) + "." + t.toString())
+            output += searchResult.stream().map(t-> (tasks.getTasks().indexOf(t) + 1) + "." + t.toString())
                     .collect(Collectors.joining("\n"));
         }
         return output;

@@ -1,7 +1,7 @@
 package duke.task;
 
-enum TaskType {
-    TODO,
+public enum TaskType {
     DEADLINE,
-    EVENT
+    EVENT,
+    TODO
 }

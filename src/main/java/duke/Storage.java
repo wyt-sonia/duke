@@ -59,8 +59,10 @@ public class Storage {
                             Task.DATETIME_FORMAT), isDone);
                     break;
                 case "E":
+                    String[] eventStartAndEndDateTimes = recordInfoParts[3].split("-");
                     temp = new Event(recordInfoParts[2].trim(),
-                            recordInfoParts[3].trim(), isDone);
+                            LocalDateTime.parse(eventStartAndEndDateTimes[0].trim()),
+                            LocalDateTime.parse(eventStartAndEndDateTimes[1].trim()), isDone);
                     break;
                 default:
                     break;

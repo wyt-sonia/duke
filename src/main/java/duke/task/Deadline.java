@@ -42,15 +42,6 @@ public class Deadline extends Task {
     }
 
     /**
-     * Sets the <code>by</code> (date and time) of the <code>Deadline</code>.
-     *
-     * @param by Date and time of the <code>Deadline</code>.
-     */
-    public void setBy(LocalDateTime by) {
-        this.by = by;
-    }
-
-    /**
      * Converts the <code>Deadline</code> detail into a String.
      *
      * @return The detail of <code>Deadline</code> in String.
@@ -60,15 +51,5 @@ public class Deadline extends Task {
         return "[D]" + super.toString()
                 + " (by: " + by.getHour() + ":" + by.getMinute()
                 + " " + by.getDayOfMonth() + "/" + by.getMonthValue() + "/" + by.getYear() + ")";
-    }
-
-    /**
-     * Converts the <code>by</code> (date and time) of the <code>Deadline</code> into a String.
-     *
-     * @return The <code>by</code> (date and time) of the <code>Deadline</code> in String.
-     */
-    public String getDateTimeString() {
-        return by.getHour() + ":" + by.getMinute()
-                + " " + by.getDayOfMonth() + "/" + by.getMonthValue() + "/" + by.getYear();
     }
 }
