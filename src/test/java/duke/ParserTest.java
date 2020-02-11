@@ -76,12 +76,11 @@ public class ParserTest {
         DukeException actualExceptionDone = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("done 12test");
         });
+        assertEquals("doneWrongIndexFormat", actualExceptionDone.getMessage());
 
         DukeException actualExceptionDelete = Assertions.assertThrows(DukeException.class, () -> {
             Parser.parse("delete 12test");
         });
-
-        assertEquals("doneWrongIndexFormat", actualExceptionDone.getMessage());
         assertEquals("deleteWrongIndexFormat", actualExceptionDelete.getMessage());
     }
 
