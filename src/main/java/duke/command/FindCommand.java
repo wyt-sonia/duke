@@ -38,19 +38,21 @@ public class FindCommand extends Command {
         return output;
     }
 
-    /** Gets the output string of search result.*/
-    private String getChosenTasksString(TaskList tasks){
+    /**
+     * Gets the output string of search result.
+     */
+    private String getChosenTasksString(TaskList tasks) {
         String output = "";
         ArrayList<Task> searchResult =
                 tasks.getTasks().stream()
                         .filter(t -> t.getDescription().contains(this.keyword))
                         .collect(Collectors
                                 .toCollection(ArrayList::new));
-        if(searchResult.size() < 1) {
+        if (searchResult.size() < 1) {
             output += "Here is no matching task in your list, please change a keyword.";
         } else {
             output += "Here are the matching tasks in your list:\n";
-            output += searchResult.stream().map(t-> (tasks.getTasks().indexOf(t) + 1) + "." + t.toString())
+            output += searchResult.stream().map(t -> (tasks.getTasks().indexOf(t) + 1) + "." + t.toString())
                     .collect(Collectors.joining("\n"));
         }
         return output;

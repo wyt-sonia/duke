@@ -43,6 +43,7 @@ public class DialogBox extends HBox {
         return new DialogBox(text, img);
     }
 
+    /** Gets <code>DukeDialog</code>. */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

@@ -1,21 +1,20 @@
 package duke;
 
-import duke.command.Command;
-import duke.command.ExitCommand;
-import duke.command.ShowListCommand;
-import duke.command.DoneCommand;
-import duke.command.AddCommand;
-import duke.command.DeleteCommand;
-import duke.command.FindCommand;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.DoneCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ShowListCommand;
 import duke.command.SortCommand;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
 /**
  * Represents a parser which handle the parsing of user input.
@@ -23,6 +22,15 @@ import java.time.format.DateTimeParseException;
  * @author Wang Yuting
  */
 public class Parser {
+    static final String OPTION_BYE = "bye";
+    static final String OPTION_LIST = "list";
+    static final String OPTION_DONE = "done";
+    static final String OPTION_TODO = "todo";
+    static final String OPTION_DEADLINE = "deadline";
+    static final String OPTION_EVENT = "event";
+    static final String OPTION_DELETE = "delete";
+    static final String OPTION_FIND = "find";
+    static final String OPTION_SORT = "sort";
 
     /**
      * Creates a <code>Parser</code>.
@@ -39,15 +47,6 @@ public class Parser {
      * @throws DukeException If the input is not valid.
      */
     public static Command parse(String fullCommand) throws DukeException {
-        final String OPTION_BYE = "bye";
-        final String OPTION_LIST = "list";
-        final String OPTION_DONE = "done";
-        final String OPTION_TODO = "todo";
-        final String OPTION_DEADLINE = "deadline";
-        final String OPTION_EVENT = "event";
-        final String OPTION_DELETE = "delete";
-        final String OPTION_FIND = "find";
-        final String OPTION_SORT = "sort";
 
         Command command = null;
         if (fullCommand.isBlank()) {
@@ -101,7 +100,9 @@ public class Parser {
         return command;
     }
 
-    /** Parses exit command */
+    /**
+     * Parses exit command.
+     */
     private static Command parseExitCommand(String desc) throws DukeException {
         if (!desc.isBlank()) {
             throw new DukeException("randomInput");
@@ -109,7 +110,9 @@ public class Parser {
         return new ExitCommand();
     }
 
-    /** Parses list command */
+    /**
+     * Parses list command.
+     */
     private static Command parseListCommand(String desc) throws DukeException {
         if (!desc.isBlank()) {
             throw new DukeException("randomInput");
@@ -117,7 +120,9 @@ public class Parser {
         return new ShowListCommand();
     }
 
-    /** Parses done command */
+    /**
+     * Parses done command.
+     */
     private static Command parseDoneCommand(String desc) throws DukeException {
         if (desc.isBlank()) {
             throw new DukeException("doneMissingIndex");
@@ -129,7 +134,9 @@ public class Parser {
         return new DoneCommand(index);
     }
 
-    /** Parses todo command */
+    /**
+     * Parses todo command.
+     */
     private static Command parseAddTodoCommand(String desc) throws DukeException {
         if (desc.isBlank()) {
             throw new DukeException("taskMissingDescription");
@@ -138,7 +145,9 @@ public class Parser {
         return new AddCommand(newTodo);
     }
 
-    /** Parses deadline command */
+    /**
+     * Parses deadline command.
+     */
     private static Command parseAddDeadlineCommand(String desc) throws DukeException {
         String[] tempInputParts;
         LocalDateTime inputTime = null;
@@ -167,10 +176,11 @@ public class Parser {
         return new AddCommand(newDeadline);
     }
 
-    /** Parses event command */
-    private static Command parseEventCommand(String desc) throws DukeException  {
+    /**
+     * Parses event command.
+     */
+    private static Command parseEventCommand(String desc) throws DukeException {
         String[] tempInputParts;
-        String[] tempInputDateTimes;
         LocalDateTime start = null;
         LocalDateTime end = null;
 
@@ -189,8 +199,9 @@ public class Parser {
         }
 
         // filter out the invalid input with wrong "start-end" format
+        String[] tempInputDateTimes;
         tempInputDateTimes = tempInputParts[1].split("-");
-        if(tempInputDateTimes.length != 2 || tempInputDateTimes[0].isBlank()){
+        if (tempInputDateTimes.length != 2 || tempInputDateTimes[0].isBlank()) {
             throw new DukeException("DateTimeParseError");
         }
 
@@ -213,8 +224,10 @@ public class Parser {
         return new AddCommand(newEvent);
     }
 
-    /** Parses delete command */
-    private static Command parseDeleteCommand(String desc) throws DukeException  {
+    /**
+     * Parses delete command.
+     */
+    private static Command parseDeleteCommand(String desc) throws DukeException {
         if (desc.isBlank()) {
             throw new DukeException("deleteMissingIndex");
         }
@@ -224,20 +237,24 @@ public class Parser {
         return new DeleteCommand(Integer.parseInt(desc));
     }
 
-    /** Parses find command */
-    private static Command parseFindCommand(String desc) throws DukeException  {
+    /**
+     * Parses find command.
+     */
+    private static Command parseFindCommand(String desc) throws DukeException {
         if (desc.isBlank()) {
             throw new DukeException("findMissingKeyword");
         }
         return new FindCommand(desc);
     }
 
-    /** Parse sort command */
+    /**
+     * Parse sort command.
+     */
     private static Command parseSortCommand(String desc) throws DukeException {
         if (desc.isBlank()) {
             throw new DukeException("sortMissingSortTerm");
         }
-        if(!desc.equals("deadline") && !desc.equals("description")){
+        if (!desc.equals("deadline") && !desc.equals("description")) {
             throw new DukeException("sortWrongSortTermFormat");
         }
         return new SortCommand(desc);
@@ -252,6 +269,7 @@ public class Parser {
      */
     public static boolean isInteger(String s) {
         try {
+            Integer.parseInt(s);
         } catch (NumberFormatException e) {
             return false;
         }

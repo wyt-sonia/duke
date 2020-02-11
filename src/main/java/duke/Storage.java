@@ -1,20 +1,18 @@
 package duke;
 
-import duke.task.ToDo;
-import duke.task.Event;
-import duke.task.Deadline;
-import duke.task.Task;
-import duke.task.TaskList;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.time.LocalDateTime;
-
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.ToDo;
 
 /**
  * Represents a storage which stores the tasks details.
@@ -56,7 +54,7 @@ public class Storage {
                 case "D":
                     temp = new Deadline(recordInfoParts[2].trim(),
                             LocalDateTime.parse(recordInfoParts[3].trim(),
-                            Task.DATETIME_FORMAT), isDone);
+                                    Task.DATETIME_FORMAT), isDone);
                     break;
                 case "E":
                     String[] eventStartAndEndDateTimes = recordInfoParts[3].split("-");

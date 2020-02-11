@@ -28,7 +28,7 @@ public class Ui {
      * Displays the welcome message.
      */
     public String getWelcome() {
-        return  greeting;
+        return greeting;
     }
 
     /**

@@ -2,7 +2,6 @@ package duke.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 /**
  * Represents a task.
@@ -81,7 +80,9 @@ public class Task implements Comparable<Task> {
         this.isDone = true;
     }
 
-    /** Gets <code>TaskType</code>. */
+    /**
+     * Gets <code>TaskType</code>.
+     */
     public TaskType getType() {
         return type;
     }
@@ -92,10 +93,10 @@ public class Task implements Comparable<Task> {
     public LocalDateTime getStartOrBy() {
         assert this.type != TaskType.TODO : "Wrong attempt to get deadline or start date form a todo task"
                 + ", please check.";
-        if(this.type == TaskType.DEADLINE){
-            return ((Deadline)this).getBy();
+        if (this.type == TaskType.DEADLINE) {
+            return ((Deadline) this).getBy();
         } else {
-            return ((Event)this).getStart();
+            return ((Event) this).getStart();
         }
     }
 
@@ -110,18 +111,20 @@ public class Task implements Comparable<Task> {
         return this.getStatusString() + " " + this.getDescription();
     }
 
-    /** Compare only tasks which are not Todo task.
-     *  The comparision of todo tasks is handling in SortCommand section. */
+    /**
+     * Compare only tasks which are not Todo task.
+     * The comparision of todo tasks is handling in SortCommand section.
+     */
     @Override
     public int compareTo(Task t) {
         int result = 0;
-        if(t.type != TaskType.TODO) {
-            if(this.getStartOrBy().isBefore(t.getStartOrBy())){
+        if (t.type != TaskType.TODO) {
+            if (this.getStartOrBy().isBefore(t.getStartOrBy())) {
                 result = -1;
-            } else if(!this.getStartOrBy().isBefore(t.getStartOrBy())) {
+            } else if (!this.getStartOrBy().isBefore(t.getStartOrBy())) {
                 result = 1;
             } else {
-                if(this.type.equals(t.type)){
+                if (this.type.equals(t.type)) {
                     result = this.description.compareTo(t.description);
                 } else {
                     result = this.type.compareTo(t.type);

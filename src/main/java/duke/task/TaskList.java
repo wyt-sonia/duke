@@ -71,6 +71,7 @@ public class TaskList {
         return this.tasks.size() != 0 ? listOfTasks : "- No task was entered -\n";
     }
 
+    /** Parses current task list to a string with valid saving format.*/
     public String getSavedString() {
         String tasks = "";
         for (Task t : this.tasks) {
@@ -81,7 +82,7 @@ public class TaskList {
                 temp += "T | " + status + " | " + t.getDescription() + "\n";
                 break;
             case DEADLINE:
-                String deadlineDateTime = Parser.getDateTimeString(((Deadline)t).getBy());
+                String deadlineDateTime = Parser.getDateTimeString(((Deadline) t).getBy());
                 temp += "D | " + status + " | " + t.getDescription() + " | "
                         + deadlineDateTime + "\n";
                 break;

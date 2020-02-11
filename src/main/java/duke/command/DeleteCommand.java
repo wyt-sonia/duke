@@ -42,14 +42,13 @@ public class DeleteCommand extends Command {
             throw new DukeException("deleteWrongIndexRange");
         }
 
-        Task chosenTask = tasks.getTasks().get(index - 1);
         tasks.getTasks().remove(index - 1);
         assert tasks.getSize() == originalListSize - 1 : "The size of task list didn't change after deletion,"
                 + " please check.";
         storage.save(tasks);
 
         String output = "Noted. I've removed this task: \n"
-                + chosenTask.toString() + "\n"
+                + tasks.getTasks().get(index - 1).toString() + "\n"
                 + "Now you have " + tasks.getSize() + " tasks in the list.";
         return output;
     }

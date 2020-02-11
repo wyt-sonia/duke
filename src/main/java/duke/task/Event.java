@@ -26,16 +26,6 @@ public class Event extends Task {
         this.end = end;
     }
 
-    /** Gets start date and time. */
-    public LocalDateTime getStart() {
-        return start;
-    }
-
-    /** Gets end date and time. */
-    public LocalDateTime getEnd() {
-        return end;
-    }
-
     /**
      * Creates a new <code>Event</code> with the given <code>description</code>, <code>at</code> (date and time) and
      * <code>isDone</code>.
@@ -45,6 +35,20 @@ public class Event extends Task {
         this.isDone = isDone;
         this.start = start;
         this.end = end;
+    }
+
+    /**
+     * Gets start date and time.
+     */
+    public LocalDateTime getStart() {
+        return start;
+    }
+
+    /**
+     * Gets end date and time.
+     */
+    public LocalDateTime getEnd() {
+        return end;
     }
 
     /**
