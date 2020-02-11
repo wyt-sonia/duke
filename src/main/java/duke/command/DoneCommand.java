@@ -35,20 +35,26 @@ public class DoneCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         int listSize = tasks.getSize();
+
         if (listSize == 0) {
             throw new DukeException("emptyList");
         }
         if (this.index > listSize || index < 1) {
             throw new DukeException("doneWrongIndexRange");
         }
-        Task t = tasks.getTasks().get(index - 1);
-        if (t.isDone()) {
+
+        Task chosenTask = tasks.getTasks().get(index - 1);
+        if (chosenTask.isDone()) {
             throw new DukeException("doneComplectedTask");
         }
-        t.markAsDone();
-        String output = "Nice! I've marked this task as done: \n"
-                + t.toString();
+
+        chosenTask.markAsDone();
+        assert chosenTask.isDone() : "The task selected is still in pending status after this action,"
+                + " please check.";
         storage.save(tasks);
+
+        String output = "Nice! I've marked this task as done: \n"
+                + chosenTask.toString();
         return output;
     }
 

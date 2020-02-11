@@ -46,92 +46,38 @@ public class Parser {
         String[] inputParts = fullCommand.split(" ", 2);
         String option = inputParts[0];
         String desc = inputParts.length == 2 ? inputParts[1] : "";
-        String[] tempInputParts;
 
         switch (option.toLowerCase()) {
         case "bye":
-            if (!desc.isBlank()) {
-                throw new DukeException("randomInput");
-            }
-            command = new ExitCommand();
+            command = parseExitCommand(desc);
             break;
 
         case "list":
-            if (!desc.isBlank()) {
-                throw new DukeException("randomInput");
-            }
-            command = new ShowListCommand();
+            command = parseListCommand(desc);
             break;
 
         case "done":
-            if (desc.isBlank()) {
-                throw new DukeException("doneMissingIndex");
-            }
-            if (!isInteger(desc.trim())) {
-                throw new DukeException("doneWrongIndexFormat");
-            }
-            command = new DoneCommand(Integer.parseInt(desc));
+            command = parseDoneCommand(desc);
             break;
 
         case "todo":
-            if (desc.isBlank()) {
-                throw new DukeException("taskMissingDescription");
-            }
-            command = new AddCommand(new ToDo(desc.trim()));
+            command = parseAddTodoCommand(desc);
             break;
 
         case "deadline":
-            if (desc.isBlank()) {
-                throw new DukeException("taskMissingDescription");
-            }
-            if (!desc.contains("/by")) {
-                throw new DukeException("deadline&eventWrongDescriptionFormat");
-            }
-            tempInputParts = desc.trim().split("/by");
-            if (tempInputParts.length != 2 || tempInputParts[0].isBlank()) {
-                throw new DukeException("deadline&eventWrongDescriptionFormat");
-            }
-            LocalDateTime inputTime = null;
-            try {
-                inputTime = LocalDateTime.parse(tempInputParts[1].trim(), Task.DATETIME_FORMAT);
-            } catch (DateTimeParseException e) {
-                throw new DukeException("DateTimeParseError");
-            }
-            if (inputTime.isBefore(LocalDateTime.now())) {
-                throw new DukeException("pastDateTime");
-            }
-            command = new AddCommand(new Deadline(tempInputParts[0].trim(), inputTime));
+            command = parseAddDeadlineCommand(desc);
             break;
 
         case "event":
-            if (desc.isBlank()) {
-                throw new DukeException("taskMissingDescription");
-            }
-            if (!desc.contains("/at")) {
-                throw new DukeException("deadline&eventWrongDescriptionFormat");
-            }
-            tempInputParts = desc.trim().split("/at");
-            if (tempInputParts.length != 2 || tempInputParts[0].isBlank()) {
-                throw new DukeException("deadline&eventWrongDescriptionFormat");
-            }
-            command = new AddCommand(new Event(tempInputParts[0].trim(), tempInputParts[1].trim()));
+            command = parseEventCommand(desc);
             break;
 
         case "delete":
-            if (desc.isBlank()) {
-                throw new DukeException("deleteMissingIndex");
-            }
-            if (!isInteger(desc.trim())) {
-                throw new DukeException("deleteWrongIndexFormat");
-            }
-            command = new DeleteCommand(Integer.parseInt(desc));
+            command = parseDeleteCommand(desc);
             break;
 
         case "find":
-            if (desc.isBlank()) {
-                throw new DukeException("findMissingKeyword");
-            }
-            command = new FindCommand(desc);
+            command = parseFindCommand(desc);
             break;
 
         default:
@@ -139,6 +85,109 @@ public class Parser {
         }
         return command;
     }
+
+    /** Parses exit command */
+    private static Command parseExitCommand(String desc) throws DukeException {
+        if (!desc.isBlank()) {
+            throw new DukeException("randomInput");
+        }
+        return new ExitCommand();
+    }
+
+    /** Parses list command */
+    private static Command parseListCommand(String desc) throws DukeException {
+        if (!desc.isBlank()) {
+            throw new DukeException("randomInput");
+        }
+        return new ShowListCommand();
+    }
+
+    /** Parses done command */
+    private static Command parseDoneCommand(String desc) throws DukeException {
+        if (desc.isBlank()) {
+            throw new DukeException("doneMissingIndex");
+        }
+        if (!isInteger(desc.trim())) {
+            throw new DukeException("doneWrongIndexFormat");
+        }
+        int index = Integer.parseInt(desc);
+        return new DoneCommand(index);
+    }
+
+    /** Parses todo command */
+    private static Command parseAddTodoCommand(String desc) throws DukeException {
+        if (desc.isBlank()) {
+            throw new DukeException("taskMissingDescription");
+        }
+        ToDo newTodo = new ToDo(desc.trim());
+        return new AddCommand(newTodo);
+    }
+
+    /** Parses deadline command */
+    private static Command parseAddDeadlineCommand(String desc) throws DukeException {
+        String[] tempInputParts;
+        if (desc.isBlank()) {
+            throw new DukeException("taskMissingDescription");
+        }
+        if (!desc.contains("/by")) {
+            throw new DukeException("deadline&eventWrongDescriptionFormat");
+        }
+
+        tempInputParts = desc.trim().split("/by");
+        if (tempInputParts.length != 2 || tempInputParts[0].isBlank()) {
+            throw new DukeException("deadline&eventWrongDescriptionFormat");
+        }
+        LocalDateTime inputTime = null;
+        try {
+            inputTime = LocalDateTime.parse(tempInputParts[1].trim(), Task.DATETIME_FORMAT);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("DateTimeParseError");
+        }
+
+        if (inputTime.isBefore(LocalDateTime.now())) {
+            throw new DukeException("pastDateTime");
+        }
+        Deadline newDeadline = new Deadline(tempInputParts[0].trim(), inputTime);
+        return new AddCommand(newDeadline);
+    }
+
+    /** Parses event command */
+    private static Command parseEventCommand(String desc) throws DukeException  {
+        String[] tempInputParts;
+        if (desc.isBlank()) {
+            throw new DukeException("taskMissingDescription");
+        }
+        if (!desc.contains("/at")) {
+            throw new DukeException("deadline&eventWrongDescriptionFormat");
+        }
+
+        tempInputParts = desc.trim().split("/at");
+        if (tempInputParts.length != 2 || tempInputParts[0].isBlank()) {
+            throw new DukeException("deadline&eventWrongDescriptionFormat");
+        }
+        Event newEvent = new Event(tempInputParts[0].trim(), tempInputParts[1].trim());
+        return new AddCommand(newEvent);
+    }
+
+    /** Parses delete command */
+    private static Command parseDeleteCommand(String desc) throws DukeException  {
+        if (desc.isBlank()) {
+            throw new DukeException("deleteMissingIndex");
+        }
+        if (!isInteger(desc.trim())) {
+            throw new DukeException("deleteWrongIndexFormat");
+        }
+        return new DeleteCommand(Integer.parseInt(desc));
+    }
+
+    /** Parses find command */
+    private static Command parseFindCommand(String desc) throws DukeException  {
+        if (desc.isBlank()) {
+            throw new DukeException("findMissingKeyword");
+        }
+        return new FindCommand(desc);
+    }
+
 
     /**
      * Checks whether the input String is an integer.

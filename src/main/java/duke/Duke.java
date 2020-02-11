@@ -31,13 +31,12 @@ public class Duke  {
      * Create a new duke with given file path.
      */
     public Duke(String filePath) {
-        ui = new Ui();
         isExit = false;
+        ui = new Ui();
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());
         } catch (Exception e) {
-            // change needed
             ui.getErrorMessage(new DukeException("loadingError"));
             tasks = new TaskList();
         }
@@ -49,7 +48,7 @@ public class Duke  {
 
     /**
      * Executes the duke program.
-    */
+     */
     public String run(String input) {
         String response = "";
         if (!isExit) {

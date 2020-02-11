@@ -54,11 +54,13 @@ public class Storage {
                     temp = new ToDo(recordInfoParts[2].trim(), isDone);
                     break;
                 case "D":
-                    temp = new Deadline(recordInfoParts[2].trim(), LocalDateTime.parse(recordInfoParts[3].trim(),
+                    temp = new Deadline(recordInfoParts[2].trim(),
+                            LocalDateTime.parse(recordInfoParts[3].trim(),
                             Task.DATETIME_FORMAT), isDone);
                     break;
                 case "E":
-                    temp = new Event(recordInfoParts[2].trim(), recordInfoParts[3].trim(), isDone);
+                    temp = new Event(recordInfoParts[2].trim(),
+                            recordInfoParts[3].trim(), isDone);
                     break;
                 default:
                     break;

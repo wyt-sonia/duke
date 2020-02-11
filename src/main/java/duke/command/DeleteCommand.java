@@ -34,20 +34,23 @@ public class DeleteCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         int originalListSize = tasks.getSize();
+
         if (originalListSize == 0) {
             throw new DukeException("emptyList");
         }
         if (this.index > originalListSize || index < 1) {
             throw new DukeException("deleteWrongIndexRange");
         }
-        Task t = tasks.getTasks().get(index - 1);
-        String output = "     Noted. I've removed this task: \n"
-                + "       " + t.toString() + "\n"
-                + "     Now you have " + tasks.getSize() + " tasks in the list.";
+
+        Task chosenTask = tasks.getTasks().get(index - 1);
         tasks.getTasks().remove(index - 1);
         assert tasks.getSize() == originalListSize - 1 : "The size of task list didn't change after deletion,"
                 + " please check.";
         storage.save(tasks);
+
+        String output = "Noted. I've removed this task: \n"
+                + chosenTask.toString() + "\n"
+                + "Now you have " + tasks.getSize() + " tasks in the list.";
         return output;
     }
 
