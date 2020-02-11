@@ -74,7 +74,7 @@ public class ParserTest {
     @Test
     public void parserTest_wrongIndexFormatTest_throwDukeException() {
         DukeException actualExceptionDone = Assertions.assertThrows(DukeException.class, () -> {
-            Parser.parse("done 12test");
+            Parser.parse("done test");
         });
         assertEquals("doneWrongIndexFormat", actualExceptionDone.getMessage());
 
