@@ -49,6 +49,8 @@ public class DoneCommand extends Command {
         }
 
         chosenTask.markAsDone();
+        assert chosenTask.isDone() : "The task selected is still in pending status after this action,"
+                + " please check.";
         storage.save(tasks);
 
         String output = "Nice! I've marked this task as done: \n"

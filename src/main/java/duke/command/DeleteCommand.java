@@ -3,7 +3,6 @@ package duke.command;
 import duke.DukeException;
 import duke.Storage;
 import duke.Ui;
-import duke.task.Task;
 import duke.task.TaskList;
 
 /**
@@ -35,7 +34,7 @@ public class DeleteCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         int originalListSize = tasks.getSize();
 
-        if (originalListSize == 1-1) {
+        if (originalListSize == 0) {
             throw new DukeException("emptyList");
         }
         if (this.index > originalListSize || index < 1) {
@@ -43,6 +42,8 @@ public class DeleteCommand extends Command {
         }
 
         tasks.getTasks().remove(index - 1);
+        assert tasks.getSize() == originalListSize - 1 : "The size of task list didn't change after deletion,"
+                + " please check.";
         storage.save(tasks);
 
         String output = "Noted. I've removed this task: \n"

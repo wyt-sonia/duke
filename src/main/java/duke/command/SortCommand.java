@@ -17,6 +17,8 @@ public class SortCommand extends Command {
      * Creates a new <code>SortCommand</code> with the given sortTerm.
      */
     public SortCommand(String sortTerm) {
+        assert sortTerm.equals("description") || sortTerm.equals("deadline") : "Wrong sort term format "
+                + "didn't caught at Parser.";
         this.sortTerm = sortTerm;
     }
 

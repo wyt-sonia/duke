@@ -23,6 +23,7 @@ public class DeleteCommandTest {
             TaskList testList = new TaskList(tasks);
             new DeleteCommand(3).execute(testList, new Ui(), new Storage("tasks.txt"));
         });
+        assertEquals("deleteWrongIndexRange", actualException1.getMessage());
 
         DukeException actualException2 = Assertions.assertThrows(DukeException.class, () -> {
             ArrayList<Task> tasks = new ArrayList<Task>();
@@ -30,8 +31,6 @@ public class DeleteCommandTest {
             TaskList testList = new TaskList(tasks);
             new DeleteCommand(-1).execute(testList, new Ui(), new Storage("tasks.txt"));
         });
-
-        assertEquals("deleteWrongIndexRange", actualException1.getMessage());
         assertEquals("deleteWrongIndexRange", actualException2.getMessage());
     }
 }
