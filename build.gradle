@@ -11,13 +11,13 @@ checkstyle {
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "hakunaMatata"
     archiveVersion = "0.1.9"
     archiveClassifier = null
     archiveAppendix = null
 }
 
-group 'duke'
+group 'hakunaMatata'
 version '0.1.0'
 
 repositories {
@@ -26,7 +26,7 @@ repositories {
 
 application {
     // Change this to your main class.
-    mainClassName = "duke.Launcher"
+    mainClassName = "hakunaMatata.Launcher"
 }
 
 run {
@@ -34,8 +34,8 @@ run {
 }
 
 dependencies {
+    compile 'com.jfoenix:jfoenix:9.0.8'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.5.0'
-
 }
 
 test {

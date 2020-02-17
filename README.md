@@ -22,11 +22,11 @@
 
 # Tutorials 
 
-duke.Duke Increment | Tutorial
+hakunaMatata.HakunaMatata Increment | Tutorial
 ---------------|---------------
 `A-Gradle` | [Gradle Tutorial](src/main/tutorials/gradleTutorial.md)
 `A-TextUiTesting` | [Text UI Testing Tutorial](src/main/tutorials/textUiTestingTutorial.md)
-`Level-10` | JavaFX tutorials:<br>→ [Part 1: Introduction to JavaFX][fx1]<br>→ [Part 2: Creating a GUI for duke.Duke][fx2]<br>→ [Part 3: Interacting with the user][fx3]<br>→ [Part 4: Introduction to FXML][fx4]
+`Level-10` | JavaFX tutorials:<br>→ [Part 1: Introduction to JavaFX][fx1]<br>→ [Part 2: Creating a GUI for hakunaMatata.HakunaMatata][fx2]<br>→ [Part 3: Interacting with the user][fx3]<br>→ [Part 4: Introduction to FXML][fx4]
 
 [fx1]: <src/main/tutorials/javaFxTutorialPart1.md>
 [fx2]: <src/main/tutorials/javaFxTutorialPart2.md>
@@ -35,5 +35,5 @@ duke.Duke Increment | Tutorial
 
 # Feedback, Bug Reports
 
-* If you have feedback or bug reports, please post in [se-edu/duke issue tracker](https://github.com/se-edu/duke/issues).
+* If you have feedback or bug reports, please post in [se-edu/hakunaMatata issue tracker](https://github.com/se-edu/hakunaMatata/issues).
 * We welcome pull requests too.
