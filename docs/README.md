@@ -1,6 +1,16 @@
 # User Guide
 
-## Features 
+##1. Introduction
+Hakuna Matata is a task list chatbot. It allows user to keep track of their different types of tasks.
+
+
+##2. Quick Start 
+
+##3. Features
+
+##3. FAQ 
+
+##2. Quick Start 
 
 ### Feature 1 
 Description of feature.
