@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private HakunaMatata hakunaMatata = new HakunaMatata("./data/tasks.txt");
+    private HakunaMatata hakunaMatata = new HakunaMatata("data/tasks.txt");
 
     @Override
     public void start(Stage stage) {

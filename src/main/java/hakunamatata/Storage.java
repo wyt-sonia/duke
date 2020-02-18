@@ -38,6 +38,13 @@ public class Storage {
         ArrayList<Task> records = new ArrayList<>();
         try {
             File f = new File(this.filepath);
+            boolean isFileExists = f.exists();
+            boolean res;
+            String path_t = "";
+            if(!isFileExists) {
+                f.getParentFile().mkdirs();
+                f.createNewFile();
+            }
             Scanner s = new Scanner(f); // create a Scanner using the File as the source
             while (s.hasNextLine()) {
                 String taskRecord = s.nextLine();
