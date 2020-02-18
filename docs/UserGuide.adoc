@@ -172,6 +172,9 @@ Their index only reflects the order of creation.
 Exits the program. +
 Format: `bye`
 
+[TIP]
+Press kbd:[enter] again the window will automatically close after the exit command.
+
 == Command Summary
 
 * *`list`*

@@ -11,13 +11,13 @@ checkstyle {
 }
 
 shadowJar {
-    archiveBaseName = "hakunaMatata"
-    archiveVersion = "0.1.9"
+    archiveBaseName = "hakunamatata"
+    archiveVersion = "0.1.10"
     archiveClassifier = null
     archiveAppendix = null
 }
 
-group 'hakunaMatata'
+group 'hakunamatata'
 version '0.1.0'
 
 repositories {
@@ -26,7 +26,7 @@ repositories {
 
 application {
     // Change this to your main class.
-    mainClassName = "hakunaMatata.Launcher"
+    mainClassName = "hakunamatata.Launcher"
 }
 
 run {
