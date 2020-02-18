@@ -1,4 +1,4 @@
-= AddressBook Level 3 - User Guide
+= Hakuna Matata Task Chatbot - User Guide
 :site-section: UserGuide
 :toc:
 :toc-title:
@@ -14,29 +14,43 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/se-edu/addressbook-level3
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `Wang Yuting`      Since: `Feb 2020`
 
 == Introduction
 
-AddressBook Level 3 (AB3) is for those who *prefer to use a desktop app for managing contacts*. More importantly, AB3 is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+Hakuna Matata is a task management chat bot for people who is comfortable with *Command Line Interface* (CLI),
+which allows users to keep track of their different types of tasks (`*Todo, Deadline and Event*`).
+Besides some basic functions (`Browse, Create, Delete, Change Status`), it also provides functions as `Find` and `Sort`.
+
+More importantly, even though Hakuna Matata mainly relys on CLI command, it also provides a nice *Graphical User Interface*
+(GUI) design.
+
+Jump to the <<Quick Start>> to get started. Enjoy!
 
 == Quick Start
 
 .  Ensure you have Java `11` or above installed in your Computer.
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your Address Book.
+.  Download the latest `hakunaMatata.jar` link:{repoURL}/releases[here].
+.  Copy the file to the folder you want to use as the home folder for your tasks.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
 image::Ui.png[width="790"]
 +
-.  Type the command in the command box and press kbd:[Enter] to execute it. +
-e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
-.  Some example commands you can try:
+.  Type the command in the command box and press kbd:[Enter] or click btn:[Send] to execute it. +
+.  Available command and valid examples:
 
-* *`list`* : lists all contacts
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to the Address Book.
-* **`delete`**`3` : deletes the 3rd contact shown in the current list
-* *`exit`* : exits the app
+* *`list`* : lists all tasks.
+* **`todo homework`**: add a new todo task with homework as description.
+* **`deadline assignment /by 20:00 20/02/2020`**: add a new deadline task with description: assignment,
+due by: 20:20 20/02/2020.
+* **`event team meeting /at 15:00 18/02/2020 17:00 18/02/2020`**: add a new event task with description: team meeting,
+start at: 15:00 18/02/2020, and end at : 17:00 18/02/2020/.
+* **`done 1`**: mark the 1st task in the task list as completed.
+* **`delete 2`** : deletes the 2nd task from the task list.
+* **`find ass`** : filter and show all tasks contains "ass" in its description.
+* **`sort description`** : sort and show task list base on tasks' description.
+* **`sort deadline`** : sort and show task list base on tasks' deadline.
+* *`bye`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
 
@@ -44,134 +58,128 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 == Features
 
 ====
-*Command Format*
+*Command Format Tips*
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-* Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-* Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* Date&Time format `hh:mm dd/mm/yyyy` e.g. 15:00 18/02/2020
+* Index range:  start from 1
+* Case insensitive: the keywords are not case sensitive. e.g. List, list and LIST will performs the same action.
 ====
 
-=== Viewing help : `help`
+=== Viewing all tasks : `list`
 
-Format: `help`
-
-=== Adding a person: `add`
-
-Adds a person to the address book +
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
-
-[TIP]
-A person can have any number of tags (including 0)
-
-Examples:
-
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-=== Listing all persons : `list`
-
-Shows a list of all persons in the address book. +
 Format: `list`
 
-=== Editing a person : `edit`
+=== Adding a todo task: `todo`
 
-Edits an existing person in the address book. +
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+Add a new +++<u>todo</u>+++  task with certain description in your task list.
+Format: `todo _desc_`
 
-****
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person's tags by typing `t/` without specifying any tags after it.
-****
+
+[TIP]
+The description is compulsory
 
 Examples:
 
-* `edit 1 p/91234567 e/johndoe@example.com` +
-Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` +
-Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `todo homework`
+* `Todo homework`
 
-=== Locating persons by name: `find`
+=== Adding a deadline task: `deadline`
 
-Finds persons whose names contain any of the given keywords. +
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Add a new +++<u>deadline</u>+++ task with certain description and the date&time of its deadline in your task list. +
+Format: `deadline _desc_ /by _date&time_`
 
-****
-* The search is case insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-****
+[TIP]
+The description and date&time are compulsory +
+The `/by` keyword is used to divide the description and date&time +
+Date&time format : hh:mm dd/mm/yyyy
 
 Examples:
 
-* `find John` +
-Returns `john` and `John Doe`
-* `find Betsy Tim John` +
-Returns any person having names `Betsy`, `Tim`, or `John`
+* `deadline CS2103T IP tag A-UserGuid /by 23:59 18/02/2020`
+* `deadline CS2101 presentation reflection /by 23:59 18/02/2020`
 
-// tag::delete[]
-=== Deleting a person : `delete`
+=== Adding an event task: `event`
 
-Deletes the specified person from the address book. +
-Format: `delete INDEX`
+Add a new +++<u>event</u>+++ task with certain description and the start and end date&time to your task list. +
+Format: `event _desc_ /at _date&time_ _date&time_`
 
-****
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index *must be a positive integer* 1, 2, 3, ...
-****
+[TIP]
+The description and date&time are compulsory +
+The `/at` keyword is used to divide the description and date&time +
+The 1st date&time is the start date, the 2nd date&time is the end date +
+Date&time format : hh:mm dd/mm/yyyy
 
 Examples:
 
-* `list` +
-`delete 2` +
-Deletes the 2nd person in the address book.
-* `find Betsy` +
-`delete 1` +
-Deletes the 1st person in the results of the `find` command.
+* `event CS2103T team meeting /at 15:00 18/02/2020 17:00 18/02/2020`
+* `event CS2101 team meeting /at 17:00 18/02/2020 19:00 18/02/2020`
 
-// end::delete[]
-=== Clearing all entries : `clear`
+=== Marking a task as done : `done`
 
-Clears all entries from the address book. +
-Format: `clear`
+Mark a pending task as completed. +
+Format: `done _index_`
 
-=== Exiting the program : `exit`
+[TIP]
+The index is compulsory +
+The index of a task starts from 1 +
+Cannot mark a completed task as done
+
+Example:
+
+* `done 1`
+
+=== Deleting a task: `delete`
+
+Delete an existing task from task list. +
+Format: `delete _index_`
+
+[TIP]
+The index is compulsory +
+The index of a task starts from 1
+
+Example:
+
+* `delete 1`
+
+****
+Once a task is deleted from the task list successfully, the rest of tasks will automatically update
+their index number to make sure their indexes are consecutive.
+****
+
+=== Finding a task: `find`
+
+Filter and show tasks base on their description using custom search keyword. +
+Format: `find _searchTerm_`
+
+[TIP]
+The search term is compulsory
+
+Example:
+
+* `find assignment`
+
+=== Sorting tasks: `sort`
+
+Sort the tasks by its deadline/description. +
+Format: `sort deadline` or `sort description`
+
+[TIP]
+Sort will not update the index number of each tasks. +
+Their index only reflects the order of creation.
+
+=== Exiting the program : `bye`
 
 Exits the program. +
-Format: `exit`
-
-=== Saving the data
-
-Address book data are saved in the hard disk automatically after any command that changes the data. +
-There is no need to save manually.
-
-// tag::dataencryption[]
-=== Encrypting data files `[coming in v2.0]`
-
-_{explain how the user can enable/disable data encryption}_
-// end::dataencryption[]
-
-== FAQ
-
-*Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
+Format: `bye`
 
 == Command Summary
 
-* *Add* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
-e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-* *Clear* : `clear`
-* *Delete* : `delete INDEX` +
-e.g. `delete 3`
-* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
-e.g. `edit 2 n/James Lee e/jameslee@example.com`
-* *Find* : `find KEYWORD [MORE_KEYWORDS]` +
-e.g. `find James Jake`
-* *List* : `list`
-* *Help* : `help`
+* *`list`*
+* **`todo _desc_`**
+* **`deadline _desc_ /by _hh:mm dd/mm/yyyy_`**
+* **`event _desc_ /at _hh:mm dd/mm/yyyy_ _hh:mm dd/mm/yyyy_`**
+* **`done _index_`**
+* **`delete _index_`**
+* **`find _searchTerm_`**
+* **`sort description` or `sort deadline`**
+* *`bye`*
