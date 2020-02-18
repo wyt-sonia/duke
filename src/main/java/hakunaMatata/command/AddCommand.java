@@ -14,7 +14,7 @@ import hakunaMatata.task.TaskList;
 public class AddCommand extends Command {
 
     private Task task;
-    private String title = "\uD83C\uDD83\uD83C\uDD7E\uD83C\uDD73\uD83C\uDD7E "
+    private String title = "\uD83C\uDD83\uD83C\uDD70\uD83C\uDD82\uD83C\uDD7A "
             + "\uD83C\uDD78\uD83C\uDD7D\uD83C\uDD82\uD83C\uDD74\uD83C\uDD81\uD83C\uDD83\uD83C\uDD74\uD83C\uDD73:\n";
 
     /**
