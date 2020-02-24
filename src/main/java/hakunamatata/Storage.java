@@ -39,9 +39,7 @@ public class Storage {
         try {
             File f = new File(this.filepath);
             boolean isFileExists = f.exists();
-            boolean res;
-            String path_t = "";
-            if(!isFileExists) {
+            if (!isFileExists) {
                 f.getParentFile().mkdirs();
                 f.createNewFile();
             }
