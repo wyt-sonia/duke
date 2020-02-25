@@ -64,8 +64,8 @@ public class Storage {
                 case "E":
                     String[] eventStartAndEndDateTimes = recordInfoParts[3].split("-");
                     temp = new Event(recordInfoParts[2].trim(),
-                            LocalDateTime.parse(eventStartAndEndDateTimes[0].trim()),
-                            LocalDateTime.parse(eventStartAndEndDateTimes[1].trim()), isDone);
+                            LocalDateTime.parse(eventStartAndEndDateTimes[0].trim(), Task.DATETIME_FORMAT),
+                            LocalDateTime.parse(eventStartAndEndDateTimes[1].trim(), Task.DATETIME_FORMAT), isDone);
                     break;
                 default:
                     break;
@@ -73,6 +73,8 @@ public class Storage {
                 records.add(temp);
             }
         } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         } finally {
             return records;
