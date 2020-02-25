@@ -38,7 +38,7 @@ public class DeleteCommand extends Command {
         if (originalListSize == 0) {
             throw new HakunaMatataException("emptyList");
         }
-        if (this.index > originalListSize || index < 1) {
+        if (this.index > originalListSize || this.index < 1) {
             throw new HakunaMatataException("deleteWrongIndexRange");
         }
 

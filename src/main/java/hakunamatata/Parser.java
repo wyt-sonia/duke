@@ -282,8 +282,16 @@ public class Parser {
      * @return The date and time of the input <code>LocalDateTime</code> in String.
      */
     public static String getDateTimeString(LocalDateTime dateTime) {
-        return dateTime.getHour() + ":" + dateTime.getMinute()
-                + " " + dateTime.getDayOfMonth() + "/" + dateTime.getMonthValue() + "/" + dateTime.getYear();
+        String min = dateTime.getMinute() < 10 ? "0" + dateTime.getMinute()
+                : "" + dateTime.getMinute();
+        String hour = dateTime.getHour() < 10 ? "0" + dateTime.getHour()
+                : "" + dateTime.getHour();
+        String day = dateTime.getDayOfMonth() < 10 ? "0" + dateTime.getDayOfMonth()
+                : "" + dateTime.getDayOfMonth();
+        String month = dateTime.getMonthValue() < 10 ? "0" + dateTime.getMonthValue()
+                : "" + dateTime.getMonthValue();
+        return hour + ":" + min
+                + " " + day + "/" + month + "/" + dateTime.getYear();
     }
 
 }

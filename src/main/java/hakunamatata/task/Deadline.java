@@ -2,6 +2,8 @@ package hakunamatata.task;
 
 import java.time.LocalDateTime;
 
+import hakunamatata.Parser;
+
 /**
  * Represents a deadline task.
  *
@@ -48,8 +50,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
+
         return "[D]" + super.toString()
-                + " (by: " + by.getHour() + ":" + by.getMinute()
-                + " " + by.getDayOfMonth() + "/" + by.getMonthValue() + "/" + by.getYear() + ")";
+                + " (by: " + Parser.getDateTimeString(this.by) + ")";
     }
 }
