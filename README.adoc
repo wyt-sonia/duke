@@ -83,8 +83,6 @@ Examples:
 * `todo homework`
 * `Todo homework`
 
-Demo Gif:
-
 image::todo_demo.gif[width="400", title="todo command demo"]
 
 === Adding a deadline task: `deadline`
@@ -145,8 +143,6 @@ Example:
 
 * `delete 1`
 
-Demo Gif:
-
 image::delete_demo.gif[width="
 ", title="delete command demo"]
 
@@ -176,9 +172,9 @@ Format: `sort deadline` or `sort description`
 Sort will not update the index number of each tasks. +
 Their index only reflects the order of creation.
 
-Demo Gif:
-
 image::sort_deadline_demo.gif[width="400", title="sort deadline command demo"]
+
+
 
 image::sort_description_demo.gif[width="400", title="sort description command demo"]
 
