@@ -173,8 +173,10 @@ Sort will not update the index number of each tasks. +
 Their index only reflects the order of creation.
 
 image::sort_deadline_demo.gif[width="400", title="sort deadline command demo"]
+
 +
 +
+
 image::sort_description_demo.gif[width="400", title="sort description command demo"]
 
 
