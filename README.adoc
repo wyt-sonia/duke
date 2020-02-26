@@ -143,8 +143,7 @@ Example:
 
 * `delete 1`
 
-image::delete_demo.gif[width="
-", title="delete command demo"]
+image::delete_demo.gif[width="400", title="delete command demo"]
 
 ****
 Once a task is deleted from the task list successfully, the rest of tasks will automatically update
