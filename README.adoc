@@ -85,7 +85,7 @@ Examples:
 
 Demo Gif:
 
-image::todo_demo.gif[width="400"]
+image::todo_demo.gif[width="400", title="todo command demo"]
 
 === Adding a deadline task: `deadline`
 
@@ -147,7 +147,8 @@ Example:
 
 Demo Gif:
 
-image::delete_demo.gif[width="400"]
+image::delete_demo.gif[width="
+", title="delete command demo"]
 
 ****
 Once a task is deleted from the task list successfully, the rest of tasks will automatically update
@@ -177,9 +178,9 @@ Their index only reflects the order of creation.
 
 Demo Gif:
 
-image::sort_deadline_demo.gif[width="400"]
+image::sort_deadline_demo.gif[width="400", title="sort deadline command demo"]
 
-image::sort_description_demo.gif[width="400"]
+image::sort_description_demo.gif[width="400", title="sort description command demo"]
 
 
 === Exiting the program : `bye`
@@ -187,10 +188,10 @@ image::sort_description_demo.gif[width="400"]
 Exits the program. +
 Format: `bye`
 
-image::bye_demo.gif[width="400", title="bye demo"]
-
 [TIP]
 Press kbd:[enter] again the window will automatically close after the exit command.
+
+image::bye_demo.gif[width="400", title="bye command demo"]
 
 == Command Summary
 
