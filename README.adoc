@@ -187,9 +187,7 @@ image::sort_description_demo.gif[width="400"]
 Exits the program. +
 Format: `bye`
 
-Demo Gif:
-
-image::bye_demo.gif[width="400"]
+image::bye_demo.gif[width="400", title="bye demo"]
 
 [TIP]
 Press kbd:[enter] again the window will automatically close after the exit command.
