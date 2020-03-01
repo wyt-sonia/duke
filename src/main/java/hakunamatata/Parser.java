@@ -55,6 +55,8 @@ public class Parser {
         Command command = null;
         if (fullCommand.isBlank()) {
             throw new HakunaMatataException("randomInput");
+        } else {
+            fullCommand = fullCommand.trim();
         }
 
         if (Arrays.asList(SpecialCommand.specialTerm).contains(fullCommand)) {
@@ -66,7 +68,7 @@ public class Parser {
         String option = inputParts[0];
         String desc = inputParts.length == 2 ? inputParts[1] : "";
 
-        switch (option.toLowerCase()) {
+        switch (option.toLowerCase().trim()) {
         case OPTION_BYE:
             command = parseExitCommand(desc);
             break;
@@ -104,7 +106,7 @@ public class Parser {
             break;
 
         case OPTION_HELP:
-            command = parseHelpCommand();
+            command = parseHelpCommand(desc);
             break;
 
         default:
@@ -123,7 +125,10 @@ public class Parser {
     /**
      * Parses help command.
      */
-    private static Command parseHelpCommand() throws HakunaMatataException {
+    private static Command parseHelpCommand(String desc) throws HakunaMatataException {
+        if (!desc.isBlank()) {
+            throw new HakunaMatataException("randomInput");
+        }
         return new HelpCommand();
     }
 

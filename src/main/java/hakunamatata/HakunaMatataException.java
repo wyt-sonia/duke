@@ -66,7 +66,7 @@ public class HakunaMatataException extends Exception {
 
         case "deadline&eventWrongDescriptionFormat":
             this.errorMessage += invalidFormat + "Please follow the valid deadline/event creation format. "
-                    + "\n  e.g. deadline description /by date ; event description /at date";
+                    + "\n  e.g. deadline description /by date ; event description /at start_date_time-end_date_time";
             break;
 
         case "randomInput":
