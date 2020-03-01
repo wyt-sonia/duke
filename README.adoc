@@ -13,7 +13,7 @@ ifdef::env-github[]
 :note-caption: :information_source:
 endif::[]
 :repoURL: https://github.com/wyt-sonia/duke
-:test_planURL: docs/test_command.txt
+:test_planURL: https://github.com/wyt-sonia/duke/docs/test_command.txt
 
 By: `Wang Yuting`      Since: `Feb 2020`
 
