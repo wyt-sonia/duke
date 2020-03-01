@@ -1,7 +1,9 @@
 package hakunamatata;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 
 import hakunamatata.command.AddCommand;
 import hakunamatata.command.Command;
@@ -9,8 +11,10 @@ import hakunamatata.command.DeleteCommand;
 import hakunamatata.command.DoneCommand;
 import hakunamatata.command.ExitCommand;
 import hakunamatata.command.FindCommand;
+import hakunamatata.command.HelpCommand;
 import hakunamatata.command.ShowListCommand;
 import hakunamatata.command.SortCommand;
+import hakunamatata.command.SpecialCommand;
 import hakunamatata.task.Deadline;
 import hakunamatata.task.Event;
 import hakunamatata.task.Task;
@@ -51,6 +55,11 @@ public class Parser {
         Command command = null;
         if (fullCommand.isBlank()) {
             throw new HakunaMatataException("randomInput");
+        }
+
+        if (Arrays.asList(SpecialCommand.specialTerm).contains(fullCommand)) {
+            command = parseSpecialCommand(fullCommand);
+            return command;
         }
 
         String[] inputParts = fullCommand.split(" ", 2);
@@ -98,6 +107,20 @@ public class Parser {
             throw new HakunaMatataException("randomInput");
         }
         return command;
+    }
+
+    /**
+     * Parses special command.
+     */
+    private static Command parseSpecialCommand(String specialTerm) throws HakunaMatataException {
+        return new SpecialCommand(specialTerm);
+    }
+
+    /**
+     * Parses help command.
+     */
+    private static Command parseHelpCommand(String specialTerm) throws HakunaMatataException {
+        return new HelpCommand();
     }
 
     /**
