@@ -7,7 +7,7 @@ import hakunamatata.task.TaskList;
 
 public class SpecialCommand extends Command {
 
-    public static String[] specialTerm = {"爬", "走开", "爱你", "love you", "love u", "加油", "Fighting", "憨批", "嘤"};
+    public static String[] specialTerm = {"爬", "爱你", "love you", "love u", "加油", "Fighting", "憨批", "嘤"};
     private String userInput;
     private String reply;
 
