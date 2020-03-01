@@ -7,7 +7,7 @@ import hakunamatata.task.TaskList;
 
 public class SpecialCommand extends Command {
 
-    public static String[] specialTerm = {"爬", "走开", "爱你", "love you", "love u", "加油",
+    public static String[] specialTerm = {"爬", "走开", "爱你", "love you", "love u", "加油", "Fighting",
             "憨批", "嘤", "我们是好朋友吗", "我们是朋友吗", "我们是好朋友吗？", "我们是朋友吗？"};
     private String userInput;
     private String reply;
@@ -27,16 +27,17 @@ public class SpecialCommand extends Command {
         case "爱你":
         case "love you":
         case "love u":
-            this.reply = "(ˊo̴̶̷̤ ᴗ o̴̶̷̤ˋ)♡ 爸爸也很爱你哦";
+            this.reply = "ฅ՞•ﻌ•՞ฅ ♡ Love Ya !";
             break;
         case "加油":
-            this.reply = "( ง⁼̴̀ᐜ⁼̴́)ง⁼³₌₃ がんばれ！！";
+        case "Fighting":
+            this.reply = "( ง⁼̴̀^⁼̴́)ง⁼³₌₃ Fighting ! !";
             break;
         case "憨批":
-            this.reply = "( ･᷄ὢ･᷅ ) ？";
+            this.reply = "( ˙⌓˙ ) 爬";
             break;
         case "嘤":
-            this.reply = "٩꒰｡•◡•｡꒱۶ 来爸爸抱～";
+            this.reply = "(｡•◡•｡) 摸～";
             break;
         case "我们是好朋友吗":
         case "我们是朋友吗":

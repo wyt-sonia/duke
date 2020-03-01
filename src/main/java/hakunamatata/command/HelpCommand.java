@@ -23,6 +23,7 @@ public class HelpCommand extends Command {
             + "    ✧ Use \"list\" to check the recorded tasks,\n"
             + "    ✧ Use\"sort + sort_term(description or deadline)\" to sort tasks,\n"
             + "    ✧ Use \"done + task_index\" to mark the task as done. \n"
+            + "    ✧ Use \"help\" check the command guide again. \n"
             + "    ✧ Use \"bye\" to exit.\n\n"
             + "ʕ•ω•ʔ 🆆🅷🅰🆃 🅲🅰🅽 🅸 🅳🅾 🅵🅾🆁 🆈🅾🆄 ?";
 

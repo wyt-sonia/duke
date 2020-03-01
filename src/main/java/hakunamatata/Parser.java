@@ -35,6 +35,7 @@ public class Parser {
     static final String OPTION_DELETE = "delete";
     static final String OPTION_FIND = "find";
     static final String OPTION_SORT = "sort";
+    static final String OPTION_HELP = "help";
 
     /**
      * Creates a <code>Parser</code>.
@@ -103,6 +104,10 @@ public class Parser {
             command = parseSortCommand(desc);
             break;
 
+        case OPTION_HELP:
+            command = parseHelpCommand();
+            break;
+
         default:
             throw new HakunaMatataException("randomInput");
         }
@@ -119,7 +124,7 @@ public class Parser {
     /**
      * Parses help command.
      */
-    private static Command parseHelpCommand(String specialTerm) throws HakunaMatataException {
+    private static Command parseHelpCommand() throws HakunaMatataException {
         return new HelpCommand();
     }
 
