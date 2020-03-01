@@ -7,7 +7,7 @@ import hakunamatata.task.TaskList;
 
 public class HelpCommand extends Command {
 
-    private String helpMessage =  "🅷🅰🅺🆄🅽🅰🅼🅰🆃🅰🆃🅰 🅷🅴🆁🅴 ʕ•ω•ʔ\n\n"
+    private String helpMessage = "🅷🅰🅺🆄🅽🅰🅼🅰🆃🅰🆃🅰 🅷🅴🆁🅴 ʕ•ω•ʔ\n\n"
             + "= Guide = \n\n"
             + "    ✎ Create Tasks(Todo, Deadline and Event):\n"
             + "     🇹 🇴 🇩 🇴\n"
