@@ -13,6 +13,7 @@ ifdef::env-github[]
 :note-caption: :information_source:
 endif::[]
 :repoURL: https://github.com/wyt-sonia/duke
+:test_planURL: docs/test_command.txt
 
 By: `Wang Yuting`      Since: `Feb 2020`
 
@@ -37,7 +38,7 @@ Jump to the <<Quick Start>> to get started. Enjoy!
 image::Ui.png[width="600"]
 +
 .  Type the command in the command box and press kbd:[Enter] or click btn:[Send] to execute it. +
-.  Available command and valid examples:
+.  Available command and valid examples (link:{test_planURL}[more test commands]) :
 
 * *`list`* : lists all tasks.
 * **`todo homework`**: add a new todo task with homework as description.
