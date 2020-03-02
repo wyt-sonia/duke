@@ -1,16 +1,13 @@
-package hakunamatata;
+package hakunamatata.command;
 
-import java.util.Scanner;
+import hakunamatata.HakunaMatataException;
+import hakunamatata.Storage;
+import hakunamatata.Ui;
+import hakunamatata.task.TaskList;
 
-/**
- * Represents the program ui which handles the interaction with user.
- *
- * @author Wang Yuting
- */
-public class Ui {
-    private Scanner scanner = new Scanner(System.in);
-    private String greeting = "🅷🅴🅻🅻🅾! 🅸'🅼 🅷🅰🅺🆄🅽🅰🅼🅰🆃🅰🆃🅰 ʕ•ω•ʔ\n\n"
-            + "I can help you to keep track of you tasks ~!\n\n"
+public class HelpCommand extends Command {
+
+    private String helpMessage = "🅷🅰🅺🆄🅽🅰🅼🅰🆃🅰🆃🅰 🅷🅴🆁🅴 ʕ•ω•ʔ\n\n"
             + "= Guide = \n\n"
             + "    ✎ Create Tasks(Todo, Deadline and Event):\n"
             + "     🇹 🇴 🇩 🇴\n"
@@ -32,37 +29,18 @@ public class Ui {
             + "    ✧ Use \"bye\" to exit.\n\n"
             + "ʕ•ω•ʔ 🆆🅷🅰🆃 🅲🅰🅽 🅸 🅳🅾 🅵🅾🆁 🆈🅾🆄 ?";
 
-    /**
-     * Displays the welcome message.
-     */
-    public String getWelcome() {
-        return greeting;
+
+    public HelpCommand() {
+        super();
     }
 
-    /**
-     * Displays an error message.
-     *
-     * @param ex The exception encountered.
-     */
-    public String getErrorMessage(HakunaMatataException ex) {
-        return ex.errorMessage;
+    @Override
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws HakunaMatataException {
+        return helpMessage;
     }
 
-    /**
-     * Reads user input.
-     *
-     * @return The input read from keyboard.
-     */
-    public String readCommand() {
-        return this.scanner.nextLine();
-    }
-
-    /**
-     * Displays the outpur.
-     *
-     * @param output The output which will be displayed.
-     */
-    public void displayOutput(String output) {
-        System.out.println(output);
+    @Override
+    public boolean isExit() {
+        return false;
     }
 }

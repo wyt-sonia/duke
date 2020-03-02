@@ -2,6 +2,7 @@ package hakunamatata;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 
 import hakunamatata.command.AddCommand;
 import hakunamatata.command.Command;
@@ -9,8 +10,10 @@ import hakunamatata.command.DeleteCommand;
 import hakunamatata.command.DoneCommand;
 import hakunamatata.command.ExitCommand;
 import hakunamatata.command.FindCommand;
+import hakunamatata.command.HelpCommand;
 import hakunamatata.command.ShowListCommand;
 import hakunamatata.command.SortCommand;
+import hakunamatata.command.SpecialCommand;
 import hakunamatata.task.Deadline;
 import hakunamatata.task.Event;
 import hakunamatata.task.Task;
@@ -31,6 +34,7 @@ public class Parser {
     static final String OPTION_DELETE = "delete";
     static final String OPTION_FIND = "find";
     static final String OPTION_SORT = "sort";
+    static final String OPTION_HELP = "help";
 
     /**
      * Creates a <code>Parser</code>.
@@ -51,13 +55,20 @@ public class Parser {
         Command command = null;
         if (fullCommand.isBlank()) {
             throw new HakunaMatataException("randomInput");
+        } else {
+            fullCommand = fullCommand.trim();
+        }
+
+        if (Arrays.asList(SpecialCommand.specialTerm).contains(fullCommand)) {
+            command = parseSpecialCommand(fullCommand);
+            return command;
         }
 
         String[] inputParts = fullCommand.split(" ", 2);
         String option = inputParts[0];
         String desc = inputParts.length == 2 ? inputParts[1] : "";
 
-        switch (option.toLowerCase()) {
+        switch (option.toLowerCase().trim()) {
         case OPTION_BYE:
             command = parseExitCommand(desc);
             break;
@@ -94,10 +105,31 @@ public class Parser {
             command = parseSortCommand(desc);
             break;
 
+        case OPTION_HELP:
+            command = parseHelpCommand(desc);
+            break;
+
         default:
             throw new HakunaMatataException("randomInput");
         }
         return command;
+    }
+
+    /**
+     * Parses special command.
+     */
+    private static Command parseSpecialCommand(String specialTerm) throws HakunaMatataException {
+        return new SpecialCommand(specialTerm);
+    }
+
+    /**
+     * Parses help command.
+     */
+    private static Command parseHelpCommand(String desc) throws HakunaMatataException {
+        if (!desc.isBlank()) {
+            throw new HakunaMatataException("randomInput");
+        }
+        return new HelpCommand();
     }
 
     /**
