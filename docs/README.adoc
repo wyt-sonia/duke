@@ -13,6 +13,7 @@ ifdef::env-github[]
 :note-caption: :information_source:
 endif::[]
 :repoURL: https://github.com/wyt-sonia/duke
+:test_planURL: https://github.com/wyt-sonia/duke/blob/master/docs/test_command.txt
 
 By: `Wang Yuting`      Since: `Feb 2020`
 
@@ -34,10 +35,10 @@ Jump to the <<Quick Start>> to get started. Enjoy!
 .  Copy the file to the folder you want to use as the home folder for your tasks.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
-image::Ui.png[width="790"]
+image::Ui.png[width="600"]
 +
 .  Type the command in the command box and press kbd:[Enter] or click btn:[Send] to execute it. +
-.  Available command and valid examples:
+.  Available command and valid examples (link:{test_planURL}[more test commands]) :
 
 * *`list`* : lists all tasks.
 * **`todo homework`**: add a new todo task with homework as description.
@@ -82,6 +83,8 @@ Examples:
 
 * `todo homework`
 * `Todo homework`
+
+image::todo_demo.gif[width="400", title="todo command demo"]
 
 === Adding a deadline task: `deadline`
 
@@ -141,6 +144,8 @@ Example:
 
 * `delete 1`
 
+image::delete_demo.gif[width="400", title="delete command demo"]
+
 ****
 Once a task is deleted from the task list successfully, the rest of tasks will automatically update
 their index number to make sure their indexes are consecutive.
@@ -167,6 +172,8 @@ Format: `sort deadline` or `sort description`
 Sort will not update the index number of each tasks. +
 Their index only reflects the order of creation.
 
+image::sort_deadline_demo.gif[width="400", title="sort deadline command demo"]
+
 === Exiting the program : `bye`
 
 Exits the program. +
@@ -174,6 +181,8 @@ Format: `bye`
 
 [TIP]
 Press kbd:[enter] again the window will automatically close after the exit command.
+
+image::bye_demo.gif[width="400", title="bye command demo"]
 
 == Command Summary
 
